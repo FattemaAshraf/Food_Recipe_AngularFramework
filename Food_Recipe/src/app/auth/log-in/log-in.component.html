@@ -59,7 +59,7 @@
               <a class="text-decoration-none text-secondry"
                 >Register now?</a
               >
-              <a class="text-main" >Forget password?</a>
+              <a class="text-main" (click)="openDialog()" >Forget password?</a>
             </div>
             <button [disabled]="loginForm.invalid" type="submit" class="primary my-2 w-100">Log in</button>
           </form>

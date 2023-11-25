@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { RequestResetPasswordComponent } from '../request-reset-password/request-reset-password.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-log-in',
@@ -25,6 +27,7 @@ export class LogInComponent {
   hide = true;
   constructor(
     private _authService: AuthService,
+    public dialog: MatDialog,
     private toastr: ToastrService,
     private _router: Router
   ) {}
@@ -41,6 +44,42 @@ export class LogInComponent {
       },
       complete: () => {
         this.toastr.success("Welcome Back", 'Hello');
+      },
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RequestResetPasswordComponent, {
+      data: {},
+      width: '30%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if(result){
+        this.onRequestReset(result); //called fun to pass data
+      }
+    });
+  }
+  onRequestReset(data: string) {
+    console.log(data);
+    // let finalResult = {
+    //   email : data
+    // }
+    this._authService.onRequestResetPassword(data).subscribe({
+      next: (res: any) => {
+        console.log(res.message);
+        this.message = res.message;
+      },
+      error: (err: any) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success(this.message, 'Done!');
+        this._router.navigate(['/auth/reset-password']);
+        localStorage.setItem('email',data);
       },
     });
   }
