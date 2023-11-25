@@ -23,7 +23,7 @@ export class LogInComponent {
       //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$'),
     ]),
   });
-  message: string = '';
+  message: string = '"Welcome Back"';
   hide = true;
   constructor(
     private _authService: AuthService,
@@ -43,7 +43,7 @@ export class LogInComponent {
         this.toastr.error(err.error.message, 'Error!');
       },
       complete: () => {
-        this.toastr.success("Welcome Back", 'Hello');
+        this.toastr.success(this.message, 'Hello');
       },
     });
   }

@@ -67,8 +67,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  border-radius: 16px;
  padding: 1.5rem 3rem;
  box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
--webkit-box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
--moz-box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
  h2{
   color: #494949;
   margin-top: 1.5rem;
@@ -92,10 +90,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   right: 5%;
   transform: translateY(-50%);
   z-index: 100;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
 }
 }
 
@@ -105,10 +99,6 @@ button {
   border: none;
   border-radius: 8px;
   padding: 10px 15px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
 
   &.primary {
     background-color: #4AA35A;
