@@ -45,6 +45,7 @@ export class LogInComponent {
         this.toastr.error(err.error.message, 'Error!');
       },
       complete: () => {
+        this._router.navigate(['/dashboard'])
         this.toastr.success(this.message, 'Hello');
       },
     });

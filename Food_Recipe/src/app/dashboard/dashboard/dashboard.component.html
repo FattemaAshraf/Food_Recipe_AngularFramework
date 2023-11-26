@@ -11,24 +11,28 @@
               </div>
               <div >
                 <ul>
-                  <li
-                   *ngFor="let item of menu"
-                   [routerLink]="item.link"
-                   >
-                    <a><i [class]="'fa-solid' +' '+item.icon"></i>
-                      <span routerLinkActive="text-white"
-                      >{{item.title}}</span></a>
-                  </li>
+                  <ng-container  *ngFor="let item of menu">
+                    <li
+                   *ngIf="item.isActive"
+                    [routerLink]="item.link"
+                    >
+                     <a><i [class]="'fa-solid' +' '+item.icon"></i>
+                       <span routerLinkActive="text-white"
+                       >{{item.title}}</span></a>
+                   </li>
+                  </ng-container>
+
+
                   <li>
                     <a
                       ><i class="fa-solid fa-unlock-keyhole"></i
-                      ><span class="text-secondary" routerLinkActive="text-white" >Change Password</span></a
+                      ><span routerLinkActive="text-white" >Change Password</span></a
                     >
                   </li>
                   <li>
                     <a
                       ><i class="fa-solid fa-right-from-bracket"></i
-                      ><span class="text-secondary" routerLinkActive="text-white">Log out</span></a
+                      ><span  routerLinkActive="text-white">Log out</span></a
                     >
                   </li>
                 </ul>
