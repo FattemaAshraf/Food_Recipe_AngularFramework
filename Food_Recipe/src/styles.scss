@@ -37,7 +37,10 @@ $FoodApp-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+.container-fluid{
+  padding-left: 0;
+  padding-right: 0;
+}
 
 // -------Color pallette
 
@@ -57,7 +60,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #494949;
 }
 .bg-dark-color{
-  background-color: #494949;
+  background-color: #1F263E;
 }
 
 //--------components

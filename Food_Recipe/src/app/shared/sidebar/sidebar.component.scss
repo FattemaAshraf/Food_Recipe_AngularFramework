@@ -1,0 +1,41 @@
+#sidebar{
+  border-top-right-radius: 58px;
+  height: 100vh;
+  ul{
+    padding-left: 0;
+    li{
+      padding: 10px 20px 10px 30px;
+position: relative;
+      a{
+        text-decoration: none;
+
+        i{
+          margin-right: 10px;
+          width: 1.4375rem;
+          color: white;
+
+        }
+        span{
+          color: #FFF;
+          font-weight: 500;
+          font-size: small;
+
+
+        }
+      }
+
+    }
+    li:hover::after{
+      position: absolute;
+      content: '';
+      height: 100%;
+      width: 5px;
+      left: 0;
+      top: 0;
+      background-color: #4AA35A;
+    }
+    li:hover{
+      background-color: rgba($color: #4AA35A, $alpha: .1);
+    }
+  }
+}
