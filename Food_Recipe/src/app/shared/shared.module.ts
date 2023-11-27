@@ -5,13 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FormsModule,
     MatDialogModule,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    HomeComponent
   ]
 })
 

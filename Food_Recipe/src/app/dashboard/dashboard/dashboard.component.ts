@@ -13,6 +13,7 @@ interface IMenu {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  isOpened:boolean = true;
   constructor(private _authService: AuthService) {}
   isAdmin():boolean{
     return this._authService.role == 'SuperAdmin'? true : false;
@@ -24,7 +25,7 @@ export class DashboardComponent {
     {
       title: 'Home',
       icon: 'fa-house',
-      link: '',
+      link: '/dashboard/home',
       isActive: this.isAdmin() || this.isUser()
     },
     {

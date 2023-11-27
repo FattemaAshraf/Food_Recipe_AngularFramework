@@ -29,7 +29,7 @@ position: relative;
       position: absolute;
       content: '';
       height: 100%;
-      width: 5px;
+      width: 16px;
       left: 0;
       top: 0;
       background-color: #4AA35A;
@@ -38,4 +38,15 @@ position: relative;
       background-color: rgba($color: #4AA35A, $alpha: .1);
     }
   }
+  img{
+    cursor: pointer;
+  }
+  img:hover{
+    transform: scale(.9);
+    background-color: rgba($color: #4AA35A, $alpha: .1);
+    border-radius: 50%;
+  }
+}
+.opened > div{
+  transition: all .3s ease-in-out;
 }

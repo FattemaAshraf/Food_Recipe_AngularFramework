@@ -1,12 +1,12 @@
 <section>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-2">
+    <div class="row opened">
+      <div [class]="isOpened?'col-2':'col-1'">
         <!-- <app-sidebar></app-sidebar> -->
-        <section id="sidebar" class="bg-dark-color">
-          <div class="container-fluid">
+        <div id="sidebar" class="bg-dark-color mr-2">
+          <!-- <div class="container-fluid"> -->
             <div class="row">
-              <div class="text-center mt-3">
+              <div class="text-center mt-3 " (click)="isOpened=!isOpened">
                 <img src="../../../assets/logo-icon.png" alt="" class="img-fluid" />
               </div>
               <div >
@@ -15,39 +15,39 @@
                     <li
                    *ngIf="item.isActive"
                     [routerLink]="item.link"
+                    [class]="isOpened?'':'d-flex justify-content-center'"
                     >
                      <a><i [class]="'fa-solid' +' '+item.icon"></i>
-                       <span routerLinkActive="text-white"
+                       <span routerLinkActive="text-white" [class]="isOpened?'':'d-none'"
                        >{{item.title}}</span></a>
                    </li>
                   </ng-container>
 
 
-                  <li>
+                  <li [class]="isOpened?'':'d-flex justify-content-center'">
                     <a
                       ><i class="fa-solid fa-unlock-keyhole"></i
-                      ><span routerLinkActive="text-white" >Change Password</span></a
+                      ><span routerLinkActive="text-white" [class]="isOpened?'':'d-none'" >Change Password</span></a
                     >
                   </li>
-                  <li>
+                  <li [class]="isOpened?'':'d-flex justify-content-center'">
                     <a
                       ><i class="fa-solid fa-right-from-bracket"></i
-                      ><span  routerLinkActive="text-white">Log out</span></a
+                      ><span  routerLinkActive="text-white" [class]="isOpened?'':'d-none'">Log out</span></a
                     >
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
-
+          <!-- </div> -->
+        </div>
       </div>
-      <div class="col-10">
+      <div [class]="isOpened?'col-10':'col-11'">
         <app-navbar></app-navbar>
+
         <router-outlet></router-outlet>
 
       </div>
     </div>
   </div>
-
 </section>

@@ -1,0 +1,17 @@
+#home{
+  background-image: url( ../../../assets/headerhome.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+background-position: center center;
+border-radius: 15px;
+color: #fff;
+
+  p{
+    max-width: 30.25rem;;
+  }
+  span{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
