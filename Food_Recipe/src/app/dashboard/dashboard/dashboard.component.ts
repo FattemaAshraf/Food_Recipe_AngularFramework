@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 interface IMenu {
@@ -14,7 +15,7 @@ interface IMenu {
 })
 export class DashboardComponent {
   isOpened:boolean = true;
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
   isAdmin():boolean{
     return this._authService.role == 'SuperAdmin'? true : false;
   }
@@ -59,4 +60,12 @@ export class DashboardComponent {
       isActive: this.isUser()
     }
   ];
+
+  logout(){
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('role');
+    localStorage.removeItem('userName');
+    this._router.navigate(['/auth']);
+
+  }
 }
