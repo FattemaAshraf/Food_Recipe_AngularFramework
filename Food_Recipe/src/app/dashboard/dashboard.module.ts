@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { adminGuard } from '../guards/admin.guard';
 import { userGuard } from '../guards/user.guard';
 import { HomeComponent } from '../shared/home/home.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {path:"", component: DashboardComponent, children: [
@@ -19,7 +20,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

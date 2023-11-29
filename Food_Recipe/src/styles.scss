@@ -95,7 +95,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   z-index: 100;
 }
 }
+#page-header {
+  background-image: url(assets/headerhome.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 15px;
+  background-color: #009247;
+  color: #fff;
 
+  p {
+    max-width: 30.25rem;
+  }
+  span {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
+#header-table {
+  h4 {
+    color: #1f263e;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  p{
+    color: #323C47;
+font-size: 0.875rem;
+font-weight: 400;
+  }
+}
+.content-table {
+  background-color: #E2E5EB;
+  border-radius: 16px;
+  p{
+    padding: 16px 20px;
+    margin-bottom: 0;
+  }
+}
 //--utilites
 
 button {
