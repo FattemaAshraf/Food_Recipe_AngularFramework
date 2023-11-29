@@ -134,6 +134,7 @@ font-weight: 400;
     margin-bottom: 0;
   }
 }
+
 //--utilites
 
 button {
@@ -158,4 +159,8 @@ button {
 }
 a{
   cursor: pointer;
+}
+table th{
+  font-weight: 100;
+  font-size: small;
 }
