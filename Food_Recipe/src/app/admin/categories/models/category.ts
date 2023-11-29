@@ -9,7 +9,7 @@ export interface ICategory {
 export interface ICategoryTable {
   pageNumber: number,
   pageSize: number,
-  totalNumberOfRecorde: number,
+  totalNumberOfRecords: number,
   totalNumberOfPages:number,
   data: ICategory[]
 }

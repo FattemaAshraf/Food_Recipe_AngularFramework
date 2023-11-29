@@ -6,6 +6,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -20,7 +21,8 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   exports:[
     ReactiveFormsModule,
@@ -29,7 +31,8 @@ import { HomeComponent } from './home/home.component';
     MatDialogModule,
     NavbarComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    MatPaginatorModule
   ]
 })
 

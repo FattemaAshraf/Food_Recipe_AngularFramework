@@ -61,5 +61,16 @@
         </tr>
       </tbody>
     </table>
+    <div>
+      <mat-paginator #paginator
+      class="demo-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="tableResponse?.totalNumberOfRecords"
+      [pageSize]="tableResponse?.pageSize"
+      [pageSizeOptions]="[5,10,25]"
+      [pageIndex]="tableResponse?.pageNumber"
+      aria-label="Select page">
+</mat-paginator>
+    </div>
   </div>
 </section>
