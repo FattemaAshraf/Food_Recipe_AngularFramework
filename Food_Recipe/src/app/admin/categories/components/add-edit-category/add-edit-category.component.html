@@ -1,0 +1,31 @@
+<div class="card-auth">
+  <div class="d-flex justify-content-between mb-4 align-items-center">
+    <h2>Add Category</h2>
+    <a (click)="onNoClick()"
+      ><i class="fa-regular fa-circle-xmark text-danger"></i
+    ></a>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text h-100" id="basic-addon1">
+        <i class="fa-solid fa-pen"></i>
+      </span>
+    </div>
+    <input
+      [(ngModel)]="categoryName"
+      type="text"
+      class="form-control"
+      placeholder="Enter Category Name"
+      aria-label="categoryName"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <button
+    [mat-dialog-close]="categoryName"
+    type="submit"
+    class="primary my-2 w-100"
+  >
+    Add
+  </button>
+</div>
