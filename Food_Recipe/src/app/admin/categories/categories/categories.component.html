@@ -39,7 +39,7 @@
         />
       </div>
       <div class="col-md-3 ms-auto">
-        <button type="submit" class="primary" (click)="openDialog()">Add New Category</button>
+        <button type="submit" class="primary" (click)="openAddDialog()">Add New Category</button>
       </div>
     </div>
   </div>
@@ -65,6 +65,7 @@
           <td>{{ item.name }}</td>
           <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
+          <td><a (click)="openDeleteDialog(item)"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
         </tr>
       </tbody>
     </table>

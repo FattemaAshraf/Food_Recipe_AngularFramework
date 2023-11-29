@@ -5,6 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditCategoryComponent } from '../components/add-edit-category/add-edit-category.component';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-categories',
@@ -56,7 +57,7 @@ export class CategoriesComponent implements OnInit {
   // console.log(term); ==> in html by every keyup
   //                    ==>loading on dattabase|requests  (keyup)="getTableData()"
   //     } //for keayup work
-  openDialog(): void {
+  openAddDialog(): void {
     const dialogRef = this.dialog.open(AddEditCategoryComponent, {
       data: {},
       width: '30%',
@@ -82,6 +83,38 @@ export class CategoriesComponent implements OnInit {
       complete: () => {
         this.toastr.success(this.message, 'Done!');
         this.getTableData(); //updaated data in table
+      },
+    });
+  }
+  openDeleteDialog(categoryData: any): void {
+    console.log(categoryData);
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: categoryData,
+      width: '30%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        console.log(result.id);
+        this.onDeleteCategory(result.id);
+      }
+    });
+  }
+
+  onDeleteCategory(id: number) {
+    this._categoryService.deleteCategory(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success(this.message, 'Done!');
+        this.getTableData();
       },
     });
   }

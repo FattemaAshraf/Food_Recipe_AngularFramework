@@ -156,6 +156,13 @@ button {
       opacity: 0.8;
     }
   }
+  &.outline-danger {
+    border: 1px solid red;
+    color: red;
+    &:hover{
+      opacity: 0.8;
+    }
+  }
 }
 a{
   cursor: pointer;

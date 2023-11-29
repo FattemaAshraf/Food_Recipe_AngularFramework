@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 
 
@@ -14,7 +15,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   declarations: [
     NavbarComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,

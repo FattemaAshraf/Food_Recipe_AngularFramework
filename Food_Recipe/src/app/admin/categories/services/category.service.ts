@@ -3,16 +3,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  constructor(private _httpClient: HttpClient) {}
 
-  constructor(private _httpClient: HttpClient) { }
-
-  getCategories(data:any): Observable<any>{
-return this._httpClient.get('Category', {params:data})
+  getCategories(data: any): Observable<any> {
+    return this._httpClient.get('Category', { params: data });
   }
-  addCategory(data:any): Observable<any>{
-    return this._httpClient.post('Category', {name:data})
-      }
+  addCategory(data: any): Observable<any> {
+    return this._httpClient.post('Category', { name: data });
+  }
+
+  deleteCategory(id:number): Observable<any> {
+    return this._httpClient.delete(`Category/${id}`);
+  }
 }
