@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesComponent } from './recipes/recipes.component';
-import { Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 
 const routes: Routes = [
   {path:"", component: RecipesComponent}
@@ -9,10 +11,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RecipesComponent
+    RecipesComponent,
+    AddRecipeComponent,
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes)
+  ],
 })
 export class RecipesModule { }

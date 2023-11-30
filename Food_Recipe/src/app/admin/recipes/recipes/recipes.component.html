@@ -1,1 +1,120 @@
-<p>recipes works!</p>
+<section id="page-header" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex align-items-center">
+        <div class="px-5">
+          <h2>Recipes <span>Items!</span></h2>
+          <p>
+            You can now add your items that any user can order it from the
+            Application and you can edit
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div>
+          <img
+            src="../../../../assets/menu-avatar.svg"
+            class="w-75 mb-0"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start header table -->
+<section id="header-table" class="my-3">
+  <div class="container-fluid">
+    <div class="d-flex gap-5 justify-content-between align-items-center">
+      <div class="flex-grow-1">
+        <div class="row">
+          <div class="col-md-10">
+            <input
+              [(ngModel)]="searchValue"
+              (keyup)="getTableData()"
+              type="text"
+              class="form-control rounded"
+              placeholder="search by name "
+              aria-label="search"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="col-md-2">
+            <select  [(ngModel)]="tagId"  (change)="getTableData()" class="form-select" aria-label="Default select example">
+              <option selected>All</option>
+              <option *ngFor="let item of tags" [value]="item.id">{{ item.name }}</option>
+            </select>
+            <!-- <h2>{{tagId}}</h2> -->
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <button type="submit" class="primary" (click)="openAddDialog()">
+          Add New Recipe
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start table -->
+<section id="table" class="my-4">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between content-table">
+      <p>Name</p>
+      <p>Actions</p>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Image</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Creation Date</th>
+          <th scope="col">Modification Date</th>
+          <th scope="col">Category</th>
+          <th scope="col">Tag</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tableData">
+          <td>{{ item.name }}</td>
+          <td class="w-25">
+            <img
+              [src]="pathHttps + item.imagePath"
+              class="w-100 rounded-lg border-success"
+              alt=""
+            />
+          </td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
+          <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
+          <td>
+            <span *ngFor="let itemCategory of item.category">
+              {{ itemCategory }}
+            </span>
+          </td>
+          <td>{{ item.tag.name }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <mat-paginator
+        #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="tableResponse?.totalNumberOfRecords"
+        [pageSize]="tableResponse?.pageSize"
+        [pageSizeOptions]="[5, 10, 25]"
+        [pageIndex]="tableResponse?.pageNumber"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</section>
