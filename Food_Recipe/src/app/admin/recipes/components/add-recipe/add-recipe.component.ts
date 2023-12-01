@@ -5,6 +5,7 @@ import { HelperService } from 'src/app/services/helper.service';
 import { RecipeService } from '../../services/recipe.service';
 import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/admin/categories/models/category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -21,10 +22,12 @@ export class AddRecipeComponent {
     tagId: new FormControl(null),
     categoriesIds: new FormControl(null),
   });
+  message: string | undefined;
   constructor(
     private _helperService: HelperService,
     private toastr: ToastrService,
-    private _recipeService: RecipeService
+    private _recipeService: RecipeService,
+    private _router: Router
   ) {}
   ngOnInit() {
     this.getAllTags();
@@ -32,6 +35,26 @@ export class AddRecipeComponent {
   }
   onSubmit(data: FormGroup) {
     console.log(data.value);
+    let myData = new FormData();
+    myData.append('name', data.value.name);
+    myData.append('price', data.value.price);
+    myData.append('description', data.value.description);
+    myData.append('categoriesIds', data.value.categoriesIds);
+    myData.append('tagId', data.value.tagId);
+console.log(myData);
+this._recipeService.addRecipe(myData).subscribe({
+  next: (res) => {
+    console.log(res);
+  },
+  error: (err) => {
+    console.log(err.error.message);
+    this.toastr.error(err.error.message, 'error!');
+  },
+  complete: () => {
+    this.toastr.success(this.message, 'Done!');
+    this._router.navigate(['/dashboard/admin/recipes'])
+  },
+})
   }
   getAllTags() {
     this._helperService.getTags().subscribe({

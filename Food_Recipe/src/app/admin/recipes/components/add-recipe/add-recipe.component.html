@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9 d-flex align-items-center">
         <div class="px-5">
-          <h2>Fill <span class="text-main">the Recipes !</span></h2>
+          <h2>Fill <span class="text-main">the Recipe !</span></h2>
           <p>
             you can now fill the meals easily using the table and form , click
             here and sill it with the table !
@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-3 d-flex align-items-center">
         <div>
-          <button type="submit" class="primary">
+          <button type="submit" class="primary" [routerLink]="['/dashboard/admin/recipes']">
             All Recipes <i class="fa-solid fa-arrow-right pl-2"></i>
           </button>
         </div>
@@ -81,6 +81,7 @@
           <select formControlName="categoriesIds" class="form-select" aria-label="Default select example">
             <option selected>All</option>
             <option *ngFor="let item of categories" [value]="item.id">{{ item.name }}</option>
+            <!-- [ngvalue] ==> value goes to api as number not string -->
           </select>
         </div>
       </div>

@@ -62,19 +62,7 @@ export class RecipesComponent {
   // console.log(term); ==> in html by every keyup
   //                    ==>loading on dattabase|requests  (keyup)="getTableData()"
   //     } //for keayup work
-  openAddDialog(): void {
-    const dialogRef = this.dialog.open(AddRecipeComponent, {
-      data: {},
-      width: '30%',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
-      if (result) {
-        this.onAddNewRecipe(result);
-      }
-    });
-  }
+
   onAddNewRecipe(data: string) {
     this._recipeService.addRecipe(data).subscribe({
       next: (res) => {
