@@ -23,6 +23,7 @@ export class AddRecipeComponent {
     categoriesIds: new FormControl(null),
   });
   message: string | undefined;
+  imgSrc: any;
   constructor(
     private _helperService: HelperService,
     private toastr: ToastrService,
@@ -41,20 +42,21 @@ export class AddRecipeComponent {
     myData.append('description', data.value.description);
     myData.append('categoriesIds', data.value.categoriesIds);
     myData.append('tagId', data.value.tagId);
-console.log(myData);
-this._recipeService.addRecipe(myData).subscribe({
-  next: (res) => {
-    console.log(res);
-  },
-  error: (err) => {
-    console.log(err.error.message);
-    this.toastr.error(err.error.message, 'error!');
-  },
-  complete: () => {
-    this.toastr.success(this.message, 'Done!');
-    this._router.navigate(['/dashboard/admin/recipes'])
-  },
-})
+    myData.append('recipeImage', this.imgSrc, this.imgSrc.name);
+    console.log(myData);
+    this._recipeService.addRecipe(myData).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success(this.message, 'Done!');
+        this._router.navigate(['/dashboard/admin/recipes']);
+      },
+    });
   }
   getAllTags() {
     this._helperService.getTags().subscribe({
@@ -64,12 +66,24 @@ this._recipeService.addRecipe(myData).subscribe({
       },
     });
   }
-  getAllCategories(){
+  getAllCategories() {
     this._helperService.getCategories().subscribe({
       next: (res) => {
         console.log(res);
-        this.categories=res.data;
-      }
-    })
+        this.categories = res.data;
+      },
+    });
+  }
+  files: File[] = [];
+
+  onSelect(event: any) {
+    console.log(event);
+    this.imgSrc = event.addedFiles[0];
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event: any) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
   }
 }

@@ -51,6 +51,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-secondry{
   color: #494949;
 }
+.text-greyLight{
+  color: #8391A1;
+
+}
 
 .bg-main{
   background-color: #4AA35A;
@@ -62,6 +66,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bg-dark-color{
   background-color: #1F263E;
 }
+
 
 //--------components
 
@@ -95,9 +100,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   transform: translateY(-50%);
   z-index: 100;
 }
-span{
-  color: #8391A1;
-}
+
 }
 #page-header {
   background-image: url(assets/headerhome.svg);

@@ -61,26 +61,26 @@
       <div class="col-md-6">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text h-100" id="basic-addon1">
+            <span class="input-group-text h-100 text-greyLight" id="basic-addon1">
               Tags:
             </span>
           </div>
           <select formControlName="tagId" class="form-select" aria-label="Default select example">
             <option selected>All</option>
-            <option *ngFor="let item of tags" [value]="item.id">{{ item.name }}</option>
+            <option *ngFor="let item of tags" [ngValue]="item.id">{{ item.name }}</option>
           </select>
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text h-100" id="basic-addon1">
+            <span class="input-group-text h-100 text-greyLight" id="basic-addon1">
               Categories:
             </span>
           </div>
           <select formControlName="categoriesIds" class="form-select" aria-label="Default select example">
             <option selected>All</option>
-            <option *ngFor="let item of categories" [value]="item.id">{{ item.name }}</option>
+            <option *ngFor="let item of categories" [ngValue]="item.id">{{ item.name }}</option>
             <!-- [ngvalue] ==> value goes to api as number not string -->
           </select>
         </div>
@@ -88,17 +88,27 @@
       <div class="input-group mb-3">
         <div class="input-group-prepend"></div>
         <textarea
+        formControlName="description"
           class="form-control"
           id="exampleFormControlTextarea1"
           placeholder="Enter Description*"
           rows="3"
         ></textarea>
+      </div><div>
+        <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+          <ngx-dropzone-label>
+            <i class="fa-solid fa-upload fa-3x mb-3"></i>
+            <div> Drag & Drop or <span class="text-main"> Choose a Item Image to Upload </span></div>
+          </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"  [removable]="true" (removed)="onRemove(f)" *ngFor="let f of files" [file]="f">
+            </ngx-dropzone-image-preview>
+        </ngx-dropzone>
       </div>
-      <div class="d-flex justify-content-end gap-2">
+      <div class="d-flex justify-content-end gap-2 my-4">
         <button type="submit" class="primary px-4">
           Save
         </button>
-        <button type="button" class="outline-primary">
+        <button type="button" class="outline-primary" [routerLink]="['/dashboard/admin/recipes']" >
           Cancel
         </button>
       </div>
