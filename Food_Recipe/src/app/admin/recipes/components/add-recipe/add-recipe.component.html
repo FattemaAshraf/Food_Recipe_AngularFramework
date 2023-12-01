@@ -1,1 +1,106 @@
-<p>add-recipe works!</p>
+<section id="recipes-header" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex align-items-center">
+        <div class="px-5">
+          <h2>Fill <span class="text-main">the Recipes !</span></h2>
+          <p>
+            you can now fill the meals easily using the table and form , click
+            here and sill it with the table !
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex align-items-center">
+        <div>
+          <button type="submit" class="primary">
+            All Recipes <i class="fa-solid fa-arrow-right pl-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start Form Data -->
+<section class="card-auth">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit(recipeForm)">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100" id="basic-addon1">
+              <i class="fa-solid fa-pen"></i>
+            </span>
+          </div>
+          <input
+            formControlName="name"
+            type="text"
+            class="form-control"
+            placeholder="Enter Recipe Name"
+            aria-label="Name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100" id="basic-addon1">
+              <i class="fa-solid fa-money-check-dollar"></i>            </span>
+          </div>
+          <input
+            formControlName="price"
+            type="text"
+            class="form-control"
+            placeholder="Enter Price"
+            aria-label="price"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100" id="basic-addon1">
+              Tags:
+            </span>
+          </div>
+          <select formControlName="tagId" class="form-select" aria-label="Default select example">
+            <option selected>All</option>
+            <option *ngFor="let item of tags" [value]="item.id">{{ item.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100" id="basic-addon1">
+              Categories:
+            </span>
+          </div>
+          <select formControlName="categoriesIds" class="form-select" aria-label="Default select example">
+            <option selected>All</option>
+            <option *ngFor="let item of categories" [value]="item.id">{{ item.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend"></div>
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          placeholder="Enter Description*"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="d-flex justify-content-end gap-2">
+        <button type="submit" class="primary px-4">
+          Save
+        </button>
+        <button type="button" class="outline-primary">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

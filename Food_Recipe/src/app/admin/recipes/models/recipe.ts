@@ -1,3 +1,4 @@
+import { ICategory } from "../../categories/models/category"
 
 export interface IRecipe {
   id:number,
@@ -7,7 +8,7 @@ export interface IRecipe {
   imagePath: string,
   description: string,
   price: number,
-  category: [],
+  category: ICategory[],
   tag: ITag
 }
 

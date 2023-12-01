@@ -95,7 +95,7 @@
           <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>
             <span *ngFor="let itemCategory of item.category">
-              {{ itemCategory }}
+              {{ itemCategory.name }}
             </span>
           </td>
           <td>{{ item.tag.name }}</td>

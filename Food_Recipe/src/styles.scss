@@ -69,7 +69,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  background-color: #fff;
  border-radius: 16px;
  padding: 1.5rem 3rem;
- box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
+//  box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
  h2{
   color: #494949;
   margin-top: 1.5rem;
@@ -77,10 +77,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  p{
   color: rgba(73, 73, 73, 0.60);
  }
- input{
+ input,textarea{
   background-color: #f7f7f7 !important;
  }
- input::placeholder{
+ input::placeholder,
+ textarea::placeholder{
   color: #8391A1
  }
  i{
@@ -93,6 +94,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   right: 5%;
   transform: translateY(-50%);
   z-index: 100;
+}
+span{
+  color: #8391A1;
 }
 }
 #page-header {

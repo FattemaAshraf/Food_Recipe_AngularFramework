@@ -6,7 +6,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 
 const routes: Routes = [
-  {path:"", component: RecipesComponent}
+  {path:"", component: RecipesComponent},
+  {path:'add', component: AddRecipeComponent}
   ];
 
 @NgModule({

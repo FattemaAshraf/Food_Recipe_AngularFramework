@@ -12,4 +12,7 @@ export class HelperService {
   getTags(): Observable<any> {
     return this._httpClient.get('tag');
   }
+  getCategories(): Observable<any> {
+    return this._httpClient.get('Category', { params: {pageSize: 100}});
+  }
 }
