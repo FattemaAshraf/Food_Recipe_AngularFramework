@@ -65,7 +65,8 @@
           <td>{{ item.name }}</td>
           <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
-          <td><a (click)="openDeleteDialog(item)"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
+          <td>
+            <a (click)="openDeleteDialog(item)"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
         </tr>
       </tbody>
     </table>

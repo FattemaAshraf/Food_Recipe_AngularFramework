@@ -11,10 +11,15 @@ export class RecipeService {
   getRecipes(data: any): Observable<any> {
     return this._httpClient.get('Recipe', { params: data });
   }
+  getRecipeById(id:number): Observable<any> {
+    return this._httpClient.get(`Recipe/${id}`);
+  }
   addRecipe(data: any): Observable<any> {
     return this._httpClient.post('Recipe', data);
   }
-
+  editRecipe(id:number,data: any): Observable<any> {
+    return this._httpClient.put(`Recipe/${id}`, data);
+  }
   deleteRecipe(id:number): Observable<any> {
     return this._httpClient.delete(`Recipe/${id}`);
   }

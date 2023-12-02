@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { IRecipe, IRecipeTable, ITag } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
-import { AddRecipeComponent } from '../components/add-recipe/add-recipe.component';
+import { AddRecipeComponent } from '../components/add-recipe/add-edit-recipe.component';
 import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class RecipesComponent {
   pageNumber: number = 1;
   pageSize: number = 5;
   tableResponse: IRecipeTable | undefined;
-  tableData: IRecipe[] | undefined = [];
+  tableData: IRecipe[] = [];
   message: string | undefined;
   tags: ITag[] =[];
   tagId: any;
@@ -40,10 +40,12 @@ export class RecipesComponent {
     };
 
     this._recipeService.getRecipes(params).subscribe({
-      next: (res) => {
+      next: (res: IRecipeTable) => {
         console.log(res);
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
+        console.log(this.tableData?.length);
+
       },
     });
   }

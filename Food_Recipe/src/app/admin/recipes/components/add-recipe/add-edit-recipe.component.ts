@@ -5,12 +5,12 @@ import { HelperService } from 'src/app/services/helper.service';
 import { RecipeService } from '../../services/recipe.service';
 import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/admin/categories/models/category';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-recipe',
-  templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.scss'],
+  selector: 'app-add-edit-recipe',
+  templateUrl: './add-edit-recipe.component.html',
+  styleUrls: ['./add-edit-recipe.component.scss'],
 })
 export class AddRecipeComponent {
   tags: ITag[] = [];
@@ -24,12 +24,24 @@ export class AddRecipeComponent {
   });
   message: string | undefined;
   imgSrc: any;
+  isUpdatedPage: boolean = false;
+  recipeData: any;
+  recipeId: any;
   constructor(
     private _helperService: HelperService,
     private toastr: ToastrService,
     private _recipeService: RecipeService,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {
+    // this.recipeId = _activatedRoute.snapshot.params['id'];
+    // if (this.recipeId) {
+    //   this.isUpdatedPage = true;
+    //   this.getRecipeById(this.recipeId)
+    // }else{
+    //   this.isUpdatedPage = false;
+    // }
+  }
   ngOnInit() {
     this.getAllTags();
     this.getAllCategories();
@@ -44,7 +56,32 @@ export class AddRecipeComponent {
     myData.append('tagId', data.value.tagId);
     myData.append('recipeImage', this.imgSrc, this.imgSrc.name);
     console.log(myData);
-    this._recipeService.addRecipe(myData).subscribe({
+    if (this.recipeId) {
+      this.edit();
+    }else{
+      this.add();
+    }
+  }
+
+  add(){
+    let formData = new FormData();
+    this._recipeService.addRecipe(formData).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success(this.message, 'Done!');
+        this._router.navigate(['/dashboard/admin/recipes']);
+      },
+    });
+  }
+  edit(){
+    let formData = new FormData();
+    this._recipeService.editRecipe(this.recipeId,formData).subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -85,5 +122,20 @@ export class AddRecipeComponent {
   onRemove(event: any) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  }
+  getRecipeById(id: any) {
+    this._recipeService.getRecipeById(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success(this.message, 'Done!');
+        this._router.navigate(['/dashboard/admin/recipes']);
+      },
+    });
   }
 }

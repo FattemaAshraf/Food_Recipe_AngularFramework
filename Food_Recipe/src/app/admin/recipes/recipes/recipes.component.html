@@ -41,16 +41,27 @@
             />
           </div>
           <div class="col-md-2">
-            <select  [(ngModel)]="tagId"  (change)="getTableData()" class="form-select" aria-label="Default select example">
+            <select
+              [(ngModel)]="tagId"
+              (change)="getTableData()"
+              class="form-select"
+              aria-label="Default select example"
+            >
               <option selected>All</option>
-              <option *ngFor="let item of tags" [value]="item.id">{{ item.name }}</option>
+              <option *ngFor="let item of tags" [value]="item.id">
+                {{ item.name }}
+              </option>
             </select>
             <!-- <h2>{{tagId}}</h2> -->
           </div>
         </div>
       </div>
       <div class="">
-        <button type="submit" class="primary" [routerLink]="['/dashboard/admin/recipes/add']">
+        <button
+          type="submit"
+          class="primary"
+          [routerLink]="['/dashboard/admin/recipes/add']"
+        >
           Add New Recipe
         </button>
       </div>
@@ -79,7 +90,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="tableData.length > 0">
         <tr *ngFor="let item of tableData">
           <td>{{ item.name }}</td>
           <td class="w-25">
@@ -94,14 +105,40 @@
           <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>
-            <span *ngFor="let itemCategory of item.category">
-              {{ itemCategory.name }}
-            </span>
+            <ng-container  *ngIf="item.category.length > 0">
+              <span *ngFor="let itemCategory of item.category">
+                {{ itemCategory.name }}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="item.category.length == 0">
+              <span class="text-muted"> No Category </span>
+             </ng-container>
           </td>
           <td>{{ item.tag.name }}</td>
-          <td></td>
+          <td>
+            <div class="dropdown text-center">
+              <a class="dropdown-toggle text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis fa-lg  text-main"></i>
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a class="dropdown-item ">
+                  <span><i class="fa-regular fa-eye  text-main"></i></span>
+                  <span class="p-2">View</span>
+                </a></li>
+                <li><a class="dropdown-item ">
+                  <span><i class="fa-regular fa-pen-to-square text-main"></i></span>
+                  <span class="p-2">Edit</span>
+                </a></li>
+                <li><a class="dropdown-item " (click)="openDeleteDialog(item)">
+                  <span><i class="fa-solid fa-trash-can text-danger"></i></span>
+                  <span class="p-2">Delete</span>
+                </a></li>
+              </ul>
+            </div>
+          </td>
         </tr>
       </tbody>
+      <div *ngIf="tableData.length == 0">No Data</div>
     </table>
     <div>
       <mat-paginator
