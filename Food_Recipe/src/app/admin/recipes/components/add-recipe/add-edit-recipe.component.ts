@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ITag } from '../../models/recipe';
+import { IRecipe, ITag } from '../../models/recipe';
 import { HelperService } from 'src/app/services/helper.service';
 import { RecipeService } from '../../services/recipe.service';
 import { ToastrService } from 'ngx-toastr';
@@ -22,10 +22,11 @@ export class AddRecipeComponent {
     tagId: new FormControl(null),
     categoriesIds: new FormControl(null),
   });
+  recipeData: any;
   message: string | undefined;
   imgSrc: any;
-  isUpdatedPage: boolean = false;
-  recipeData: any;
+  pathHttps: string = 'https://upskilling-egypt.com:443/';
+  isUpdatedPage: boolean = false;;
   recipeId: any;
   constructor(
     private _helperService: HelperService,
@@ -34,13 +35,13 @@ export class AddRecipeComponent {
     private _router: Router,
     private _activatedRoute: ActivatedRoute
   ) {
-    // this.recipeId = _activatedRoute.snapshot.params['id'];
-    // if (this.recipeId) {
-    //   this.isUpdatedPage = true;
-    //   this.getRecipeById(this.recipeId)
-    // }else{
-    //   this.isUpdatedPage = false;
-    // }
+    this.recipeId = _activatedRoute.snapshot.params['id'];
+    if (this.recipeId) {
+      this.isUpdatedPage = true;
+      this.getRecipeById(this.recipeId)
+    }else{
+      this.isUpdatedPage = false;
+    }
   }
   ngOnInit() {
     this.getAllTags();
@@ -123,19 +124,24 @@ export class AddRecipeComponent {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-  getRecipeById(id: any) {
+  getRecipeById(id: number) {
     this._recipeService.getRecipeById(id).subscribe({
       next: (res) => {
         console.log(res);
+        this.recipeData = res;
       },
       error: (err) => {
-        console.log(err.error.message);
-        this.toastr.error(err.error.message, 'error!');
       },
       complete: () => {
-        this.toastr.success(this.message, 'Done!');
-        this._router.navigate(['/dashboard/admin/recipes']);
-      },
+this.imgSrc = this.pathHttps+this.recipeData.imagePath;
+        this.recipeForm.patchValue({
+          name: this.recipeData?.name,
+          price: this.recipeData?.price,
+          description: this.recipeData?.description,
+          tagId: this.recipeData?.tag.id,
+          categoriesIds: this.recipeData?.category.id
+        })
+      }
     });
   }
 }
