@@ -14,44 +14,39 @@
           <p>Welcome Back! Please enter your details</p>
 
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text h-100" id="basic-addon1">
-                  <i class="fa-solid fa-mobile-screen"></i>
-                </span>
-              </div>
+            <div class="input-group flex-nowrap mb-3">
+              <span class="input-group-text py-2" id="addon-wrapping"
+                ><i class="fa-solid fa-mobile-screen"></i
+              ></span>
               <input
+                type="email"
+                class="form-control py-2"
                 formControlName="email"
-                type="text"
-                class="form-control"
                 placeholder="Enter Your Email"
-                aria-label="Email"
-                aria-describedby="basic-addon1"
+                aria-label="email"
+                aria-describedby="addon-wrapping"
               />
             </div>
             <span class="text-danger mb-3" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
               <span *ngIf="loginForm.get('email')?.hasError('required')">Email is required</span>
               <span *ngIf="loginForm.get('email')?.hasError('pattern')">Invalid email format</span>
             </span>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text h-100" id="basic-addon1">
-                  <i class="fa-solid fa-lock"></i>
-                </span>
-              </div>
+            <div class="input-group flex-nowrap mb-3">
+              <span class="input-group-text py-2" id="addon-wrapping"
+                ><i class="fa-solid fa-lock"></i></span>
               <input
-                formControlName="password"
-                type="text"
-                [type]="hide ? 'password' : 'text'"
-                class="form-control"
-                placeholder="Password"
-                aria-label="Password"
-                aria-describedby="basic-addon1"
+              formControlName="password"
+              type="text"
+              [type]="hide ? 'password' : 'text'"
+              class="form-control py-2"
+              placeholder="Password"
+              aria-label="Password"
+              aria-describedby="basic-addon1"
               />
               <span class="eye-icon" (click)="hide = !hide"><i class="fa-solid" [class]="hide ?'fa-eye-slash':'fa-eye'"></i></span>
             </div>
             <span class="text-danger mb-3" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-              <span *ngIf="loginForm.get('password')?.hasError('required')">password is required</span>
+              <span *ngIf="loginForm.get('password')?.hasError('required')">password is required </span>
               <span *ngIf="loginForm.get('password')?.getError?.length">Password must be at least 6 characters long</span>
               <!-- <span *ngIf="loginForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
             </span>
@@ -59,7 +54,7 @@
               <a class="text-decoration-none text-secondry"
                 >Register now?</a
               >
-              <a class="text-main" (click)="openDialog()" >Forget password?</a>
+              <a class="text-main" (click)="openDialog()" >forget password?</a>
             </div>
             <button [disabled]="loginForm.invalid" type="submit" class="primary my-2 w-100">Log in</button>
           </form>
