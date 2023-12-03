@@ -178,3 +178,9 @@ table th{
   font-weight: 100;
   font-size: small;
 }
+.form-select:focus,
+.form-control:focus{
+  border-color: #009247;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(0 146 71 / 21%);
+}

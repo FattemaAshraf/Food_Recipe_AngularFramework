@@ -56,16 +56,15 @@ export class AddRecipeComponent {
     myData.append('categoriesIds', data.value.categoriesIds);
     myData.append('tagId', data.value.tagId);
     myData.append('recipeImage', this.imgSrc, this.imgSrc.name);
-    console.log(myData);
+    // console.log(myData);  ==> error: Failed to execute 'append' on 'FormData': parameter 2 is not of type 'Blob'.
     if (this.recipeId) {
-      this.edit();
+      this.edit(this.recipeId,myData);
     }else{
-      this.add();
+      this.add(myData);
     }
   }
 
-  add(){
-    let formData = new FormData();
+  add(formData:FormData){
     this._recipeService.addRecipe(formData).subscribe({
       next: (res) => {
         console.log(res);
@@ -80,9 +79,8 @@ export class AddRecipeComponent {
       },
     });
   }
-  edit(){
-    let formData = new FormData();
-    this._recipeService.editRecipe(this.recipeId,formData).subscribe({
+  edit(id:number,formData:FormData){
+    this._recipeService.editRecipe(id,formData).subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -133,13 +131,13 @@ export class AddRecipeComponent {
       error: (err) => {
       },
       complete: () => {
-this.imgSrc = this.pathHttps+this.recipeData.imagePath;
-        this.recipeForm.patchValue({
+          this.imgSrc = this.pathHttps+this.recipeData.imagePath;
+          this.recipeForm.patchValue({
           name: this.recipeData?.name,
           price: this.recipeData?.price,
           description: this.recipeData?.description,
           tagId: this.recipeData?.tag.id,
-          categoriesIds: this.recipeData?.category.id
+          categoriesIds: this.recipeData?.category[0].id
         })
       }
     });
