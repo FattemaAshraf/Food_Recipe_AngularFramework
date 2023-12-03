@@ -36,6 +36,7 @@ export class RecipesComponent {
     let params = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
+      tagId:this.tagId,
       name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
     };
 
