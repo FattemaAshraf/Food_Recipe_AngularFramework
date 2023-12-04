@@ -1,0 +1,145 @@
+<section id="page-header" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex align-items-center">
+        <div class="px-5">
+          <h2>Recipes <span>Items!</span></h2>
+          <p>
+            You can now add your items that any user can order it from the
+            Application and you can edit
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div>
+          <img
+            src="../../../../assets/menu-avatar.svg"
+            class="w-75 mb-0"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start header table -->
+<section id="header-table" class="my-3">
+  <div class="container-fluid">
+    <div class="d-flex gap-5 justify-content-between align-items-center">
+      <div class="flex-grow-1">
+        <div class="row">
+          <div class="col-md-10">
+            <input
+              [(ngModel)]="searchValue"
+              (keyup)="getTableData()"
+              type="text"
+              class="form-control rounded"
+              placeholder="search by name "
+              aria-label="search"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="col-md-2">
+            <select
+              [(ngModel)]="tagId"
+              (change)="getTableData()"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option selected>All</option>
+              <option *ngFor="let item of tags" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+            <!-- <h2>{{tagId}}</h2> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- start table -->
+<section id="table" class="my-4">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between content-table">
+      <p>Name</p>
+      <p>Actions</p>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Image</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Creation Date</th>
+          <th scope="col">Modification Date</th>
+          <th scope="col">Category</th>
+          <th scope="col">Tag</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="tableData.length > 0">
+        <tr *ngFor="let item of tableData">
+          <td>{{ item.name }}</td>
+          <td class="w-25">
+            <img
+              [src]="pathHttps + item.imagePath"
+              class="w-25 rounded-lg border-success"
+              alt=""
+            />
+          </td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
+          <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
+          <td>
+            <ng-container  *ngIf="item.category.length > 0">
+              <span *ngFor="let itemCategory of item.category">
+                {{ itemCategory.name }}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="item.category.length == 0">
+              <span class="text-muted"> No Category </span>
+             </ng-container>
+          </td>
+          <td>{{ item.tag.name }}</td>
+          <td>
+            <div class="dropdown text-center">
+              <a class="dropdown-toggle text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis fa-lg  text-main"></i>
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a  (click)="openDialog(item)" class="dropdown-item ">
+                  <span><i class="fa-regular fa-eye  text-main"></i></span>
+                  <span class="p-2">View</span>
+                </a></li>
+                <li><a [routerLink]="['/dashboard/admin/recipes/edit/', item.id]" class="dropdown-item ">
+                  <span><i class="fa-regular fa-heart text-danger"></i></span>
+                  <span class="p-2">Favourite</span>
+                </a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <div *ngIf="tableData.length == 0">No Data</div>
+    </table>
+    <div>
+      <mat-paginator
+        #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="tableResponse?.totalNumberOfRecords"
+        [pageSize]="tableResponse?.pageSize"
+        [pageSizeOptions]="[5, 10, 25]"
+        [pageIndex]="tableResponse?.pageNumber"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</section>
