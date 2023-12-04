@@ -16,11 +16,12 @@ import { UsersAdminService } from '../services/users-admin.service';
 })
 export class UsersComponent {
   searchValue: string = '';
+  groupId:number =0;
   pageNumber: number = 1;
   pageSize: number = 5;
+  pathHttps: string = 'https://upskilling-egypt.com:443/';
   tableResponse: IUsersAdminTable | undefined;
   tableData: IUsersAdmin[] | undefined = [];
-  message: string | undefined;
   constructor(
     private _usersAdmin: UsersAdminService,
     public dialog: MatDialog,
@@ -31,11 +32,21 @@ export class UsersComponent {
   }
 
   getTableData() {
-    let params = {
-      pageSize: this.pageSize,
-      pageNumber: this.pageNumber,
-      name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
-    };
+    let params = {}
+    if(this.groupId==2 || this.groupId==1){
+      params={
+        pageSize: this.pageSize,
+        pageNumber: this.pageNumber,
+        groups: this.groupId,
+        userName: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
+      }
+    }else{
+      params={
+        pageSize: this.pageSize,
+        pageNumber: this.pageNumber,
+        userName: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
+      }
+    }
     this._usersAdmin.getAllUsers(params).subscribe({
       next: (res) => {
         console.log(res);
