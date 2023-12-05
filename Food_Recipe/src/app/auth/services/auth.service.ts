@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { ILogin } from 'src/app/models/ilogin';
+import { IRegister } from 'src/app/models/iregister';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +41,8 @@ export class AuthService {
   }
   onResetPassword(data: string) {
     return this._httpClient.post('Users/Reset', data);
+  }
+  onRegister(data: any) {
+    return this._httpClient.post('Users/Register', data);
   }
 }

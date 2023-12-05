@@ -5,10 +5,12 @@ import { RequestResetPasswordComponent } from './request-reset-password/request-
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "login", pathMatch: "full"},
   {path: 'login', component: LogInComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
 ];
 
@@ -16,7 +18,8 @@ const routes: Routes = [
   declarations: [
     LogInComponent,
     RequestResetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

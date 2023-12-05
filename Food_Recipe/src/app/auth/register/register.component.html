@@ -1,0 +1,263 @@
+<section id="register">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <div class="card-auth">
+          <div class="text-center">
+            <img
+              src="../../../assets/logo-lanscape.png"
+              alt="logo"
+              class="w-50"
+            />
+          </div>
+          <h2>Register</h2>
+          <p>Welcome Back! Please enter your details</p>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group flex-nowrap mb-3">
+                  <span class="input-group-text py-2" id="addon-wrapping"
+                    ><i class="fa-solid fa-user"></i></span>
+                  <input
+                    type="text"
+                    class="form-control py-2"
+                    formControlName="userName"
+                    placeholder="Enter Your userName"
+                    aria-label="userName"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <span
+                  class="text-danger mb-3"
+                  *ngIf="
+                    registerForm.get('userName')?.invalid &&
+                    (registerForm.get('userName')?.dirty ||
+                      registerForm.get('userName')?.touched)
+                  "
+                >
+                  <span *ngIf="registerForm.get('userName')?.hasError('required')"
+                    >userName is required</span
+                  >
+                  <span *ngIf="registerForm.get('userName')?.hasError('pattern')"
+                    >Invalid userName format must contains numbers and characters</span
+                  >
+                </span>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group flex-nowrap mb-3">
+                  <span class="input-group-text py-2" id="addon-wrapping"
+                    ><i class="fa-solid fa-at"></i></span>
+                  <input
+                    type="email"
+                    class="form-control py-2"
+                    formControlName="email"
+                    placeholder="Enter Your Email"
+                    aria-label="email"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <span
+                  class="text-danger mb-3"
+                  *ngIf="
+                    registerForm.get('email')?.invalid &&
+                    (registerForm.get('email')?.dirty ||
+                      registerForm.get('email')?.touched)
+                  "
+                >
+                  <span *ngIf="registerForm.get('email')?.hasError('required')"
+                    >Email is required</span
+                  >
+                  <span *ngIf="registerForm.get('email')?.hasError('pattern')"
+                    >Invalid email format</span
+                  >
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group flex-nowrap mb-3">
+                  <span class="input-group-text py-2" id="addon-wrapping"
+                    ><i class="fa-solid fa-earth-americas"></i></span>
+                  <input
+                    type="text"
+                    class="form-control py-2"
+                    formControlName="country"
+                    placeholder="Enter Your country"
+                    aria-label="country"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <span
+                  class="text-danger mb-3"
+                  *ngIf="
+                    registerForm.get('country')?.invalid &&
+                    (registerForm.get('country')?.dirty ||
+                      registerForm.get('country')?.touched)
+                  "
+                >
+                  <span *ngIf="registerForm.get('country')?.hasError('required')"
+                    >country is required</span
+                  >
+                </span>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group flex-nowrap mb-3">
+                  <span class="input-group-text py-2" id="addon-wrapping"
+                    ><i class="fa-solid fa-mobile-screen"></i
+                      ></span>
+                  <input
+                    formControlName="phoneNumber"
+                    type="text"
+                    class="form-control py-2"
+                    placeholder="phoneNumber"
+                    aria-label="phoneNumber"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <span
+                  class="text-danger mb-3"
+                  *ngIf="
+                    registerForm.get('phoneNumber')?.invalid &&
+                    (registerForm.get('phoneNumber')?.dirty ||
+                      registerForm.get('phoneNumber')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="registerForm.get('phoneNumber')?.hasError('required')"
+                    >phoneNumber is required
+                  </span>
+                  <!-- <span *ngIf="registerForm.get('phoneNumber')?.getError?.length"
+                    >Invalid phoneNumber format</span
+                  > -->
+                  <!-- <span *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">Invalid Phone number format</span> -->
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group flex-nowrap mb-3">
+                  <span class="input-group-text py-2" id="addon-wrapping"
+                    ><i class="fa-solid fa-lock"></i
+                  ></span>
+                  <input
+                    formControlName="password"
+                    type="text"
+                    [type]="hide ? 'password' : 'text'"
+                    class="form-control py-2"
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="basic-addon1"
+                  />
+                  <span class="eye-icon" (click)="hide = !hide"
+                    ><i
+                      class="fa-solid"
+                      [class]="hide ? 'fa-eye-slash' : 'fa-eye'"
+                    ></i
+                  ></span>
+                </div>
+                <span
+                  class="text-danger mb-3"
+                  *ngIf="
+                    registerForm.get('password')?.invalid &&
+                    (registerForm.get('password')?.dirty ||
+                      registerForm.get('password')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="registerForm.get('password')?.hasError('required')"
+                    >password is required
+                  </span>
+                  <!-- <span *ngIf="registerForm.get('password')?.getError?.length"
+                    >Password must be at least 6 characters long</span
+                  > -->
+                  <!-- <span *ngIf="registerForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
+                </span>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group flex-nowrap mb-3">
+                  <span class="input-group-text py-2" id="addon-wrapping"
+                    ><i class="fa-solid fa-lock"></i
+                  ></span>
+                  <input
+                    formControlName="confirmPassword"
+                    type="text"
+                    [type]="hide ? 'password' : 'text'"
+                    class="form-control py-2"
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="basic-addon1"
+                  />
+                  <span class="eye-icon" (click)="hide = !hide"
+                    ><i
+                      class="fa-solid"
+                      [class]="hide ? 'fa-eye-slash' : 'fa-eye'"
+                    ></i
+                  ></span>
+                </div>
+                <span
+                  class="text-danger mb-3"
+                  *ngIf="
+                    registerForm.get('password')?.invalid &&
+                    (registerForm.get('password')?.dirty ||
+                      registerForm.get('password')?.touched)
+                  "
+                >
+                  <span
+                    *ngIf="registerForm.get('password')?.hasError('required')"
+                    >password is required
+                  </span>
+                  <!-- <span *ngIf="registerForm.get('password')?.getError?.length"
+                    >Password must be at least 6 characters long</span
+                  > -->
+                  <!-- <span *ngIf="registerForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
+                </span>
+              </div>
+            </div>
+            <div>
+              <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+                <ngx-dropzone-label *ngIf="!imgSrc">
+                  <i class="fa-solid fa-upload fa-3x mb-3"></i>
+                  <div>
+                    Drag & Drop or
+                    <span class="text-main">
+                      Choose a Item Image to Upload
+                    </span>
+                  </div>
+                </ngx-dropzone-label>
+                <ngx-dropzone-label *ngIf="imgSrc">
+                  <img [src]="imgSrc" alt="" class="w-25" />
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  [removable]="true"
+                  (removed)="onRemove(f)"
+                  *ngFor="let f of files"
+                  [file]="f"
+                >
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+            <div class="text-end my-2">
+              <a
+                class="text-decoration-none text-main text-secondry"
+                routerLink="/auth/login"
+                >Login now?</a
+              >
+              <!-- <a class="text-main" (click)="openDialog()" >forget password?</a> -->
+            </div>
+            <div class="text-center">
+              <button
+
+                type="submit"
+                class="primary my-2 w-50"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

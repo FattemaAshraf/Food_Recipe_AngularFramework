@@ -192,13 +192,19 @@ table th{
 }
 .table{
   --bs-emphasis-color-rgb: 226,229,235;
-  --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 1);
-  transition: all .3s ease-in;
+  --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), .5);
 }
-// tr:hover{
-//   transform: scale(1.05);
-//   box-shadow: -5px 26px 34px -10px rgba(173,173,173,1);
-//   border-radius: 15px;
-// }
+tr{
+  transition: all .1s ease;
+
+}
+tr:hover{
+  // transform: scale(1.05);
+  // box-shadow: -5px 26px 34px -10px rgba(173,173,173,1);
+  // border-radius: 15px;
+  box-shadow: inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);
+  z-index: 2;
+  position: relative;
+}
 
 
