@@ -45,4 +45,8 @@ export class AuthService {
   onRegister(data: any) {
     return this._httpClient.post('Users/Register', data);
   }
+  onVerify(data:any){
+    return this._httpClient.put('Users/verify', data);
+
+  }
 }

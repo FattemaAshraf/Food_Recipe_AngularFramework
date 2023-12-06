@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { VerifyComponent } from '../verify/verify.component';
 
 @Component({
   selector: 'app-register',
@@ -67,7 +68,7 @@ export class RegisterComponent {
     myData.append('email', data.value.email);
     myData.append('country', data.value.country);
     myData.append('phoneNumber', data.value.phoneNumber);
-    myData.append('profileImage', this.imgSrc.this.imgSrc.name);
+    myData.append('profileImage', this.imgSrc,this.imgSrc.name);
     myData.append('password', data.value.password);
     myData.append('confirmPassword', data.value.confirmPassword);
 
@@ -80,47 +81,19 @@ export class RegisterComponent {
         this.toastr.error(err.error.message, 'Error!');
       },
       complete: () => {
-        // this._router.navigate(['/dashboard']);
+        this.openDialog();
         this.toastr.success(this.message, 'Hello');
       },
     });
   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(RequestResetPasswordComponent, {
-  //     data: {},
-  //     width: '30%',
-  //   });
+  openDialog(): void {
+    const dialogRef = this.dialog.open(VerifyComponent, {
+      data: {},
+      width: '40%',
+    });
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log('The dialog was closed');
-  //     console.log(result);
-  //     if (result) {
-  //       this.onRequestReset(result); //called fun to pass data
-  //     }
-  //   });
-  // }
-  // onRequestReset(data: string) {
-  //   console.log(data);
-  //   // let finalResult = {
-  //   //   email : data
-  //   // }
-  //   this._authService.onRequestResetPassword(data).subscribe({
-  //     next: (res: any) => {
-  //       console.log(res.message);
-  //       this.message = res.message;
-  //     },
-  //     error: (err: any) => {
-  //       console.log(err.error.message);
-  //       this.toastr.error(err.error.message, 'error!');
-  //     },
-  //     complete: () => {
-  //       this.toastr.success(this.message, 'Done!');
-  //       this._router.navigate(['/auth/reset-password']);
-  //       localStorage.setItem('email', data);
-  //     },
-  //   });
-  // }
+  }
   files: File[] = [];
 
   onSelect(event: any) {

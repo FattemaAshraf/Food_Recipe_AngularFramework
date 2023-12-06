@@ -1,0 +1,54 @@
+<div class="card-auth">
+  <h2>Verify Your Account</h2>
+  <p>Please Enter Your Email And Check Your Inbox</p>
+  <form [formGroup]="verifyForm" (ngSubmit)="onSubmit(verifyForm)">
+  <div class="input-group flex-nowrap mb-3">
+    <span class="input-group-text py-2" id="addon-wrapping"
+      ><i class="fa-solid fa-at"></i></span>
+    <input
+      type="email"
+      class="form-control py-2"
+      formControlName="email"
+      placeholder="Enter Your Email"
+      aria-label="email"
+      aria-describedby="addon-wrapping"
+    />
+  </div>
+  <span
+    class="text-danger mb-3"
+    *ngIf="
+      verifyForm.get('email')?.invalid &&
+      (verifyForm.get('email')?.dirty ||
+        verifyForm.get('email')?.touched)
+    "
+  >
+    <span *ngIf="verifyForm.get('email')?.hasError('required')"
+      >Email is required</span
+    >
+    <span *ngIf="verifyForm.get('email')?.hasError('pattern')"
+      >Invalid email format</span
+    >
+  </span>
+
+    <div class="input-group flex-nowrap mb-3">
+      <span class="input-group-text py-2" id="addon-wrapping"
+        ><i class="fa-solid fa-lock"></i></span>
+      <input
+      formControlName="code"
+      type="text"
+      class="form-control py-2"
+      placeholder="code"
+      aria-label="code"
+      aria-describedby="basic-addon1"
+      />
+    </div>
+    <span class="text-danger mb-3" *ngIf="verifyForm.get('code')?.invalid && (verifyForm.get('password')?.dirty || verifyForm.get('password')?.touched)">
+      <span *ngIf="verifyForm.get('code')?.hasError('required')">password is required </span>
+      <span *ngIf="verifyForm.get('code')?.getError?.length">code must be 4 characters long</span>
+    </span>
+    <div class="text-end">
+      <a (click)="onNoClick()" routerLink="/auth/login" class="text-main">Log in?</a>
+    </div>
+    <button type="submit" class="primary my-2 w-100">Verify</button>
+    </form>
+</div>
