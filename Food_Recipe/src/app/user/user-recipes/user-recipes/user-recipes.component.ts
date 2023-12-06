@@ -8,6 +8,7 @@ import { HelperService } from 'src/app/services/helper.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { RecipeDetailsComponent } from '../components/recipe-details/recipe-details.component';
 import { Router } from '@angular/router';
+import { FavouritesService } from '../../favourites/services/favourites.service';
 
 @Component({
   selector: 'app-user-recipes',
@@ -28,7 +29,9 @@ export class UserRecipesComponent {
      private toastr: ToastrService,
      private _recipeService: RecipeService,
      private _router: Router,
-     private _helperService: HelperService) {}
+     private _helperService: HelperService,
+     private _favService: FavouritesService
+     ) {}
   ngOnInit() {
     this.getTableData();
     this.getAllTags();
@@ -132,7 +135,22 @@ openDialog(recipeItem: IRecipe): void {
   dialogRef.afterClosed().subscribe((result) => {
     console.log('The dialog was closed');
     console.log(result);
+    this.addToFavourite(result)
+
    });
 }
+addToFavourite(id: number){
+this._favService.onAddToFavourite(id).subscribe({
+  next: (res)=>{
+    console.log(res);
 
+  },error: (err)=>{
+    console.log(err.error.message);
+
+  },complete: ()=>{
+    this.toastr.success('added to favourites', 'Done!');
+
+  }
+})
+}
 }
