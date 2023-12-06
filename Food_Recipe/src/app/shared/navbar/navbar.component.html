@@ -4,9 +4,20 @@
       <div class="col-3 ms-auto">
         <div class="user-profile d-flex align-items-center gap-2">
           <div class="user-avatar">
-            <img class="img-fluid" src="../../../assets/avatar.png" alt="" />
+
+            <img class="img-fluid" *ngIf="user?.imagePath"
+            [src]="pathHttps + user?.imagePath"
+            alt="" />
+
+            <img class="img-fluid"  *ngIf="!user?.imagePath"
+            src="../../../assets/avatar.png"
+            alt="" />
+
           </div>
-          <div>{{userName}}</div>
+          <div>
+            <p class="mb-0 ">{{user?.userName}}</p>
+            <p class="mb-0 fs-6 fw-light text-muted">{{user?.group?.name}}</p>
+          </div>
         </div>
       </div>
     </div>
