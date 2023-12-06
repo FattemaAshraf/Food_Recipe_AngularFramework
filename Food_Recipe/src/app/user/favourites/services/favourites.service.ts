@@ -8,13 +8,13 @@ import { Observable } from 'rxjs';
 export class FavouritesService {
   constructor(private _httpClient: HttpClient) {}
 
-  getAllFavourites(): Observable<any> {
-    return this._httpClient.get('userRecipe');
+  getAllFavourites(data: any): Observable<any> {
+    return this._httpClient.get('userRecipe',{ params: data });
   }
   onAddToFavourite(id:number): Observable<any> {
     return this._httpClient.post('userRecipe', {recipeId:id});
   }
-  onDeleteFavourite(data: any): Observable<any> {
-    return this._httpClient.delete('userRecipe', data);
+  onDeleteFavourite(id:number): Observable<any> {
+    return this._httpClient.delete(`userRecipe/${id}`);
   }
 }

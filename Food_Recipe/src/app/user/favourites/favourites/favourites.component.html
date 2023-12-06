@@ -1,1 +1,76 @@
-<p>favourites works!</p>
+<section id="page-header" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex align-items-center">
+        <div class="px-5">
+          <h2>Favourites <span>Items!</span></h2>
+          <p>
+            You can now add your items that any user can order it from the
+            Application and you can edit
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div>
+          <img
+            src="../../../../assets/menu-avatar.svg"
+            class="w-75 mb-0"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start header table -->
+<section id="header-table" class="my-3">
+  <div class="container-fluid">
+    <div class="d-flex gap-5 justify-content-between align-items-center">
+      <div class="flex-grow-1">
+        <div class="row">
+          <div class="col-md-10">
+            <input
+            [(ngModel)]="searchValue"
+            (keyup)="getAllFavourites()"
+              type="text"
+              class="form-control rounded"
+              placeholder="search by name "
+              aria-label="search"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="col-md-2">
+            <button
+            type="submit"
+            class="primary"
+            [routerLink]="['/dashboard/user/recipes']"
+          >
+            All Recipes <i class="fa-solid fa-arrow-right pl-2"></i>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start table -->
+<section id="favourites" class="my-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 " *ngFor="let item of tableData">
+        <div class="card-fav" >
+          <a (click)="openDeleteDialog(item)"><i class="fa-solid fa-trash-can fa-1x"></i></a>
+          <div>
+            <img [src]="pathHttps + item.recipe.imagePath" alt="" />
+          </div>
+          <div class="description">
+            <h4>{{item.recipe.name}}</h4>
+            <p>{{item.recipe.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
