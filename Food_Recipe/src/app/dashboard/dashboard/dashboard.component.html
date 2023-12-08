@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row opened">
       <div [class]="isOpened?'col-2':'col-1'">
-        <!-- <app-sidebar></app-sidebar> -->
+        <app-sidebar></app-sidebar>
         <div id="sidebar" class="bg-dark-color mr-2">
           <!-- <div class="container-fluid"> -->
             <div class="row">
@@ -25,7 +25,7 @@
 
 
                   <li [class]="isOpened?'':'d-flex justify-content-center'">
-                    <a
+                    <a mat-button (click)="openDialog()"
                       ><i class="fa-solid fa-unlock-keyhole"></i
                       ><span routerLinkActive="text-white" [class]="isOpened?'':'d-none'" >Change Password</span></a
                     >

@@ -19,7 +19,6 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     SharedModule,
     ToastrModule.forRoot({
-      closeButton : true,
       progressBar: true
     })
   ],

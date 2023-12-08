@@ -47,6 +47,8 @@ export class AuthService {
   }
   onVerify(data:any){
     return this._httpClient.put('Users/verify', data);
-
+  }
+  onChangePassword(data:any){
+    return this._httpClient.put('Users/ChangePassword', data)
   }
 }

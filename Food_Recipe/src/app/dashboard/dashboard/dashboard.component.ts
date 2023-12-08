@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 interface IMenu {
   title: string;
@@ -15,7 +17,7 @@ interface IMenu {
 })
 export class DashboardComponent {
   isOpened:boolean = true;
-  constructor(private _authService: AuthService, private _router: Router) {}
+  constructor( public dialog: MatDialog,private _authService: AuthService, private _router: Router) {}
   isAdmin():boolean{
     return this._authService.role == 'SuperAdmin'? true : false;
   }
@@ -67,5 +69,11 @@ export class DashboardComponent {
     localStorage.removeItem('userName');
     this._router.navigate(['/auth']);
 
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      data: {},
+    });
   }
 }

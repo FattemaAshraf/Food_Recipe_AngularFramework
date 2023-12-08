@@ -11,13 +11,12 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
-
 @NgModule({
   declarations: [
     NavbarComponent,
     SidebarComponent,
     HomeComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +25,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     FormsModule,
     MatDialogModule,
     MatPaginatorModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
   ],
   exports:[
     ReactiveFormsModule,
