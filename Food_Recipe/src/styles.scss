@@ -207,4 +207,7 @@ tr:hover{
   position: relative;
 }
 
+.dropdown-item.active, .dropdown-item:active{
+  --bs-dropdown-link-active-bg: #0092474b;
 
+}

@@ -2,23 +2,40 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-3 ms-auto">
-        <div class="user-profile d-flex align-items-center gap-2">
-          <div class="user-avatar">
 
-            <img class="img-fluid" *ngIf="user?.imagePath"
-            [src]="pathHttps + user?.imagePath"
-            alt="" />
 
-            <img class="img-fluid"  *ngIf="!user?.imagePath"
-            src="../../../assets/avatar.png"
-            alt="" />
+          <div class="user-profile d-flex align-items-center gap-2">
+            <div class="user-avatar">
+              <img class="img-fluid" *ngIf="user?.imagePath"
+              [src]="pathHttps + user?.imagePath"
+              alt="" />
 
+              <img class="img-fluid"  *ngIf="!user?.imagePath"
+              src="../../../assets/avatar.png"
+              alt="" />
+
+            </div>
+            <div class="user-details">
+              <p class="mb-0 ">{{user?.userName}}</p>
+              <p class="mb-0 fs-6 fw-light text-muted">{{user?.group?.name}}</p>
+            </div>
+            <div class="dropdown text-center">
+              <a class="dropdown-toggle text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-chevron-down "></i>
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a  class="dropdown-item " routerLink="/dashboard/profile">
+                  <span><i class="fa-solid fa-pen-to-square text-main"></i></span>
+                  <span class="p-2">My Profile</span>
+                </a></li>
+                <li><a class="dropdown-item ">
+                  <span><i class="fa-solid fa-right-from-bracket text-danger"></i></span>
+                  <span class="p-2">Log Out</span>
+                </a></li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <p class="mb-0 ">{{user?.userName}}</p>
-            <p class="mb-0 fs-6 fw-light text-muted">{{user?.group?.name}}</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

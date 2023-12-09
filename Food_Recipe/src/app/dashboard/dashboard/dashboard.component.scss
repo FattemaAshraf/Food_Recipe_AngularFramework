@@ -1,7 +1,6 @@
 #sidebar{
   border-top-right-radius: 58px;
   height: 100vh;
-  height: 100%;
   ul{
     padding-left: 0;
     li{
@@ -50,4 +49,9 @@ position: relative;
 }
 .opened > div{
   transition: all .3s ease-in-out;
+}
+.sticky{
+    position: sticky;
+  top: 0;
+  z-index: 1071;
 }

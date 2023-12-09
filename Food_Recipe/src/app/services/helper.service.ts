@@ -15,7 +15,5 @@ export class HelperService {
   getCategories(): Observable<any> {
     return this._httpClient.get('Category', { params: {pageSize: 100}});
   }
-  getCurrentUser(): Observable<any> {
-    return this._httpClient.get('Users/currentUser');
-  }
+
 }

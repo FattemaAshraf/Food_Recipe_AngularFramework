@@ -198,19 +198,20 @@
                 <span
                   class="text-danger mb-3"
                   *ngIf="
-                    registerForm.get('password')?.invalid &&
-                    (registerForm.get('password')?.dirty ||
-                      registerForm.get('password')?.touched)
+                    registerForm.get('confirmPassword')?.invalid &&
+                    (registerForm.get('confirmPassword')?.dirty ||
+                      registerForm.get('confirmPassword')?.touched)
                   "
                 >
                   <span
-                    *ngIf="registerForm.get('password')?.hasError('required')"
-                    >password is required
+                    *ngIf="registerForm.get('confirmPassword')?.hasError('confirmPassword')"
+                    >confirmPassword is required
                   </span>
-                  <!-- <span *ngIf="registerForm.get('password')?.getError?.length"
+                  <!-- <span *ngIf="registerForm.get('confirmPassword')?.getError?.length"
                     >Password must be at least 6 characters long</span
                   > -->
-                  <!-- <span *ngIf="registerForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
+                  <span *ngIf="registerForm.get('confirmPassword')?.errors?.['invalid']">password and confirm password not match</span>
+                  <!-- <span *ngIf="registerForm.get('confirmPassword')?.hasError('confirmPassword')">password must have capital and small charachters and numbers</span> -->
                 </span>
               </div>
             </div>

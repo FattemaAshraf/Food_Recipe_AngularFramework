@@ -1,0 +1,239 @@
+<section id="header-profile" class="my-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex align-items-center">
+        <div class="px-5" >
+          <h2>{{user?.userName}}</h2>
+          <p>
+            This is a welcoming screen for the entry of the profile , you
+            can now see the options
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 img-position">
+        <div>
+          <img class="img-fluid" *ngIf="user?.imagePath"
+          [src]="pathHttps+user?.imagePath"
+          alt="" />
+
+          <img class="img-fluid"  *ngIf="!user?.imagePath"
+          src="../../../assets/avatar.png"
+          alt="" />
+          </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section id="info-profile">
+  <div class="container">
+    <div class="row">
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm)">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text py-2" id="addon-wrapping"
+                  ><i class="fa-solid fa-user"></i></span>
+                <input
+                  type="text"
+                  class="form-control py-2"
+                  formControlName="userName"
+                  placeholder="Enter Your userName"
+                  aria-label="userName"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <span
+                class="text-danger mb-3"
+                *ngIf="
+                  updateForm.get('userName')?.invalid &&
+                  (updateForm.get('userName')?.dirty ||
+                    updateForm.get('userName')?.touched)
+                "
+              >
+                <span *ngIf="updateForm.get('userName')?.hasError('required')"
+                  >userName is required</span
+                >
+                <span *ngIf="updateForm.get('userName')?.hasError('pattern')"
+                  >Invalid userName format must contains numbers and characters</span
+                >
+              </span>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text py-2" id="addon-wrapping"
+                  ><i class="fa-solid fa-at"></i></span>
+                <input
+                  type="email"
+                  class="form-control py-2"
+                  formControlName="email"
+                  placeholder="Enter Your Email"
+                  aria-label="email"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <span
+                class="text-danger mb-3"
+                *ngIf="
+                  updateForm.get('email')?.invalid &&
+                  (updateForm.get('email')?.dirty ||
+                    updateForm.get('email')?.touched)
+                "
+              >
+                <span *ngIf="updateForm.get('email')?.hasError('required')"
+                  >Email is required</span
+                >
+                <span *ngIf="updateForm.get('email')?.hasError('pattern')"
+                  >Invalid email format</span
+                >
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text py-2" id="addon-wrapping"
+                  ><i class="fa-solid fa-earth-americas"></i></span>
+                <input
+                  type="text"
+                  class="form-control py-2"
+                  formControlName="country"
+                  placeholder="Enter Your country"
+                  aria-label="country"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <span
+                class="text-danger mb-3"
+                *ngIf="
+                  updateForm.get('country')?.invalid &&
+                  (updateForm.get('country')?.dirty ||
+                    updateForm.get('country')?.touched)
+                "
+              >
+                <span *ngIf="updateForm.get('country')?.hasError('required')"
+                  >country is required</span
+                >
+              </span>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text py-2" id="addon-wrapping"
+                  ><i class="fa-solid fa-mobile-screen"></i
+                    ></span>
+                <input
+                  formControlName="phoneNumber"
+                  type="text"
+                  class="form-control py-2"
+                  placeholder="phoneNumber"
+                  aria-label="phoneNumber"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <span
+                class="text-danger mb-3"
+                *ngIf="
+                  updateForm.get('phoneNumber')?.invalid &&
+                  (updateForm.get('phoneNumber')?.dirty ||
+                    updateForm.get('phoneNumber')?.touched)
+                "
+              >
+                <span
+                  *ngIf="updateForm.get('phoneNumber')?.hasError('required')"
+                  >phoneNumber is required
+                </span>
+                <!-- <span *ngIf="updateForm.get('phoneNumber')?.getError?.length"
+                  >Invalid phoneNumber format</span
+                > -->
+                <!-- <span *ngIf="updateForm.get('phoneNumber')?.hasError('pattern')">Invalid Phone number format</span> -->
+              </span>
+            </div>
+          </div>
+          <div class="row">
+              <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text py-2" id="addon-wrapping"
+                  ><i class="fa-solid fa-lock"></i
+                ></span>
+                <input
+                  formControlName="confirmPassword"
+                  type="text"
+                  [type]="hide ? 'password' : 'text'"
+                  class="form-control py-2"
+                  placeholder="Confirm Password"
+                  aria-label="Password"
+                  aria-describedby="basic-addon1"
+                />
+                <span class="eye-icon" (click)="hide = !hide"
+                  ><i
+                    class="fa-solid"
+                    [class]="hide ? 'fa-eye-slash' : 'fa-eye'"
+                  ></i
+                ></span>
+              </div>
+              <span
+                class="text-danger mb-3"
+                *ngIf="
+                  updateForm.get('confirmPassword')?.invalid &&
+                  (updateForm.get('confirmPassword')?.dirty ||
+                    updateForm.get('confirmPassword')?.touched)
+                "
+              >
+                <span
+                  *ngIf="updateForm.get('confirmPassword')?.hasError('required')"
+                  >password is required
+                </span>
+                <!-- <span *ngIf="updateForm.get('password')?.getError?.length"
+                  >Password must be at least 6 characters long</span
+                > -->
+                <!-- <span *ngIf="updateForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
+              </span>
+          </div>
+          <div>
+            <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+              <ngx-dropzone-label *ngIf="!imgSrc">
+                <i class="fa-solid fa-upload fa-3x mb-3"></i>
+                <div>
+                  Drag & Drop or
+                  <span class="text-main">
+                    Choose a Item Image to Upload
+                  </span>
+                </div>
+              </ngx-dropzone-label>
+              <ngx-dropzone-label *ngIf="imgSrc">
+                <img [src]="imgSrc" alt="" class="w-25" />
+              </ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                [removable]="true"
+                (removed)="onRemove(f)"
+                *ngFor="let f of files"
+                [file]="f"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+          <div class="d-flex justify-content-between my-2">
+            <button
+            type="submit"
+            class="outline-primary  m-2 w-50"
+            routerLink="/dashboard/home"
+          >
+          <i class="fa-solid fa-arrow-left pl-2"></i> Back to Home
+          </button>
+            <button
+
+              type="submit"
+              class="primary m-2  w-50"
+            >
+              Update
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+</section>

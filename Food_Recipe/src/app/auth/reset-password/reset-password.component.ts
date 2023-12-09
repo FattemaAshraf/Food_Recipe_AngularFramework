@@ -52,7 +52,9 @@ export class ResetPasswordComponent {
   ) {}
 
   passwordMatchValidator(control: any) {
-    if (control.get('password') === control.get('confirmPassword')) {
+    let password =control.get('password');
+    let confirmPassword=control.get('confirmPassword')
+    if (password.value == confirmPassword.value) {
       return null;
     } else {
       control

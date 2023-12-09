@@ -26,7 +26,7 @@ export class AddRecipeComponent {
   message: string | undefined;
   imgSrc: any;
   pathHttps: string = 'https://upskilling-egypt.com:443/';
-  isUpdatedPage: boolean = false;;
+  isUpdatedPage: boolean = false;
   recipeId: any;
   constructor(
     private _helperService: HelperService,

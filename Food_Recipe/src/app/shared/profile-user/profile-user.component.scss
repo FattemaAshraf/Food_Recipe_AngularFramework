@@ -1,0 +1,40 @@
+#header-profile{
+  background-image: url( ../../../assets/headerhome.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+background-position: center center;
+border-radius: 15px;
+color: #fff;
+background-color: #009247;
+.img-position{
+  position: relative;
+  min-height: 200px;
+}
+img{
+  border-radius: 50%;
+  border: 10px solid white;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  transform: translateY(40%);
+}
+  p{
+    max-width: 30.25rem;;
+  }
+  span{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
+#info-profile{
+  margin-top: 100px;
+}
+.eye-icon{
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
