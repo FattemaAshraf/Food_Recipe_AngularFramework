@@ -106,6 +106,7 @@ export class ProfileUserComponent {
       },
       complete: () => {
         this.toastr.success(this.message, 'Updated');
+        this._router.navigate(['/dashboard/home']);
       },
     });
   }

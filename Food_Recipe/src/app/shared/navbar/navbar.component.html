@@ -1,10 +1,8 @@
-<section id="navbar" class="my-2">
-  <div class="container-fluid">
+<section id="navbar" class="my-2" [ngClass]="{'sticky': isSticky, 'dark-bg': isDarkBackground,'light-bg': isLightBackground }">
+  <div class="container-fluid px-4"  >
     <div class="row">
       <div class="col-3 ms-auto">
-
-
-          <div class="user-profile d-flex align-items-center gap-2">
+          <div class="user-profile d-flex align-items-center gap-2 justify-content-end">
             <div class="user-avatar">
               <img class="img-fluid" *ngIf="user?.imagePath"
               [src]="pathHttps + user?.imagePath"
@@ -17,11 +15,15 @@
             </div>
             <div class="user-details">
               <p class="mb-0 ">{{user?.userName}}</p>
-              <p class="mb-0 fs-6 fw-light text-muted">{{user?.group?.name}}</p>
+              <p class="mb-0 fs-6 fw-light">{{user?.group?.name}}</p>
             </div>
             <div class="dropdown text-center">
-              <a class="dropdown-toggle text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-chevron-down "></i>
+              <a class="dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <ng-container >
+                  <i class="fa-solid fa-chevron-down text " [ngClass]="{'fa-solid fa-chevron-down text': isIcon,'sticky': isSticky, 'text-light': isDarkBackground,'text-dark': isLightBackground }"></i>
+
+                </ng-container>
+
               </a>
               <ul class="dropdown-menu ">
                 <li><a  class="dropdown-item " routerLink="/dashboard/profile">

@@ -1,7 +1,7 @@
 #navbar {
-  background-color: #f8f9fb;
   padding: 1rem 0rem;
   border-radius: 1rem;
+  transition: all 0.3s ease;
   .user-avatar {
     width: 50px;
     border-radius: 50%;
@@ -16,3 +16,21 @@ span {
   color: #1f384c;
 }
 
+.sticky {
+  position: sticky;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.light-bg{
+  background-color: #f8f9fb;
+}
+.dark-bg {
+  background-color: #1F263E; /* Change to your desired dark color */
+  color: #f8f9fb;
+}
+.text-light{
+  color: #f8f9fb;
+}
+.text-dark{
+  color: black;
+}
