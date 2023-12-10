@@ -16,6 +16,7 @@ export class LogOutComponent {
     localStorage.removeItem('role');
     localStorage.removeItem('userName');
     this._router.navigate(['/auth']);
+    this.close();
   }
   close(){
 this.dialogRef.close();
