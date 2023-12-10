@@ -13,6 +13,7 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { RouterModule } from '@angular/router';
 import { NoDataComponent } from './no-data/no-data.component';
 import { TrimDescriptionPipe } from './pipes/trim-description.pipe';
+import { LogOutComponent } from './sidebar/log-out/log-out.component';
 
 
 
@@ -25,6 +26,7 @@ import { TrimDescriptionPipe } from './pipes/trim-description.pipe';
     ProfileUserComponent,
     NoDataComponent,
     TrimDescriptionPipe,
+    LogOutComponent,
   ],
   imports: [
     CommonModule,

@@ -56,7 +56,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -86,55 +85,66 @@
         <tr *ngFor="let item of tableData">
           <td>{{ item.name }}</td>
           <td class="w-25">
-            <img
-              [src]="pathHttps + item.imagePath"
-              class="w-25 rounded-lg border-success"
-              alt=""
-            />
+            <div *ngIf="item.imagePath">
+              <img
+                [src]="pathHttps + item.imagePath"
+                class="w-25 rounded-lg border-success"
+                alt=""
+              />
+            </div>
+            <div *ngIf="!item.imagePath" class="no-img">
+              <p class="text-muted">Not Image Available</p>
+            </div>
           </td>
-          <td>{{ item.description }}</td>
+          <td>{{ item.description | trimDescription }}</td>
           <td>{{ item.price }}</td>
           <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>{{ item.modificationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>
-            <ng-container  *ngIf="item.category.length > 0">
+            <ng-container *ngIf="item.category.length > 0">
               <span *ngFor="let itemCategory of item.category">
                 {{ itemCategory.name }}
               </span>
             </ng-container>
             <ng-container *ngIf="item.category.length == 0">
               <span class="text-muted"> No Category </span>
-             </ng-container>
+            </ng-container>
           </td>
           <td>{{ item.tag.name }}</td>
           <td>
             <div class="dropdown text-center">
-              <a class="dropdown-toggle text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-ellipsis fa-lg  text-main"></i>
+              <a
+                class="dropdown-toggle text-muted"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-ellipsis fa-lg text-main"></i>
               </a>
-              <ul class="dropdown-menu ">
-                <li><a  (click)="openDialog(item)" class="dropdown-item ">
-                  <span><i class="fa-regular fa-eye  text-main"></i></span>
-                  <span class="p-2">View</span>
-                </a></li>
-                <li><a (click)="addToFavourite(item.id)" class="dropdown-item ">
-                  <span><i class="fa-regular fa-heart text-danger"></i></span>
-                  <span class="p-2">Favourite</span>
-                </a></li>
+              <ul class="dropdown-menu">
+                <li>
+                  <a (click)="openDialog(item)" class="dropdown-item">
+                    <span><i class="fa-regular fa-eye text-main"></i></span>
+                    <span class="p-2">View</span>
+                  </a>
+                </li>
+                <li>
+                  <a (click)="addToFavourite(item.id)" class="dropdown-item">
+                    <span><i class="fa-regular fa-heart text-danger"></i></span>
+                    <span class="p-2">Favourite</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </td>
         </tr>
-
       </tbody>
-
     </table>
     <div class="row" *ngIf="tableData.length == 0">
       <div class="col-md-6 mx-auto">
         <app-no-data></app-no-data>
-
       </div>
-
     </div>
     <div *ngIf="tableData.length > 0">
       <mat-paginator

@@ -38,4 +38,7 @@ constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>,private _Aut
       },
     })
   }
+  close(){
+    this.dialogRef.close();
+  }
 }

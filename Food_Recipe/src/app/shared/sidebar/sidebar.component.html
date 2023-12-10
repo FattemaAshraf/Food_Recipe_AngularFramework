@@ -20,13 +20,13 @@
 
 
           <li [class]="isOpened?'':'d-flex justify-content-center'">
-            <a mat-button (click)="openDialog()"
+            <a mat-button (click)="openDialogCahngePassword()"
               ><i class="fa-solid fa-unlock-keyhole"></i
               ><span routerLinkActive="text-white" [class]="isOpened?'':'d-none'" >Change Password</span></a
             >
           </li>
           <li [class]="isOpened?'':'d-flex justify-content-center'">
-            <a (click)="logout()"
+            <a mat-button (click)="openDialogLogOut()"
               ><i class="fa-solid fa-right-from-bracket"></i
               ><span  routerLinkActive="text-white" [class]="isOpened?'':'d-none'">Log out</span></a
             >

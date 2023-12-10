@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ChangePasswordComponent } from 'src/app/dashboard/change-password/change-password.component';
+import { ChangePasswordComponent } from 'src/app/shared/sidebar/change-password/change-password.component';
+import { LogOutComponent } from './log-out/log-out.component';
 
 interface IMenu {
   title: string;
@@ -67,15 +68,17 @@ export class SidebarComponent {
     },
   ];
 
-  logout() {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('role');
-    localStorage.removeItem('userName');
-    this._router.navigate(['/auth']);
-  }
-  openDialog(): void {
+
+  openDialogCahngePassword(): void {
     const dialogRef = this.dialog.open(ChangePasswordComponent, {
       data: {},
+      width: '40%'
+    });
+  }
+  openDialogLogOut(): void {
+    const dialogRef = this.dialog.open(LogOutComponent, {
+      data: {},
+      width: '40%'
     });
   }
 }

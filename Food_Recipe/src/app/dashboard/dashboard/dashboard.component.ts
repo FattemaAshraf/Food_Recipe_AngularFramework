@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { ChangePasswordComponent } from '../../shared/sidebar/change-password/change-password.component';
 
 
 @Component({

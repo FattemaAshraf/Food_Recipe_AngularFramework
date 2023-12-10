@@ -6,7 +6,7 @@ import { RouterLink, RouterModule, Routes } from '@angular/router';
 import { adminGuard } from '../guards/admin.guard';
 import { userGuard } from '../guards/user.guard';
 import { HomeComponent } from '../shared/home/home.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordComponent } from '../shared/sidebar/change-password/change-password.component';
 import { ProfileUserComponent } from '../shared/profile-user/profile-user.component';
 
 const routes: Routes = [
