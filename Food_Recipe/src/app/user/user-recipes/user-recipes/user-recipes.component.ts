@@ -57,7 +57,12 @@ export class UserRecipesComponent {
         this.tableData = this.tableResponse?.data;
         console.log(this.tableData?.length);
         let userRecipes = this.tableData?.length;
-        localStorage.setItem('userRecipes', userRecipes.toLocaleString());
+        if (userRecipes !== undefined) {
+          localStorage.setItem('userRecipes', userRecipes.toLocaleString());
+        } else {
+          localStorage.setItem('userRecipes', '0');
+        }
+
       },
     });
   }

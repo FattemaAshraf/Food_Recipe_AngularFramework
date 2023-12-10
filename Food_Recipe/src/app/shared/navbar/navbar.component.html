@@ -1,4 +1,4 @@
-<section id="navbar" class="my-2" [ngClass]="{'sticky': isSticky, 'dark-bg': isDarkBackground,'light-bg': isLightBackground }">
+<section id="navbar" class="my-2" [ngClass]="{'sticky-nav': isSticky, 'dark-bg-nav': isDarkBackground,'light-bg-nav': isLightBackground }">
   <div class="container-fluid px-4"  >
     <div class="row">
       <div class="col-3 ms-auto">
@@ -20,7 +20,7 @@
             <div class="dropdown text-center">
               <a class="dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <ng-container >
-                  <i class="fa-solid fa-chevron-down text " [ngClass]="{'fa-solid fa-chevron-down text': isIcon,'sticky': isSticky, 'text-light': isDarkBackground,'text-dark': isLightBackground }"></i>
+                  <i class="fa-solid fa-chevron-down text " [ngClass]="{'fa-solid fa-chevron-down text': isIcon,'sticky-nav': isSticky, 'text-light-nav': isDarkBackground,'text-dark-nav': isLightBackground }"></i>
 
                 </ng-container>
 

@@ -11,6 +11,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { RouterModule } from '@angular/router';
+import { NoDataComponent } from './no-data/no-data.component';
 
 
 
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     DeleteDialogComponent,
     ProfileUserComponent,
+    NoDataComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { RouterModule } from '@angular/router';
     SidebarComponent,
     HomeComponent,
     MatPaginatorModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NoDataComponent,
   ]
 })
 

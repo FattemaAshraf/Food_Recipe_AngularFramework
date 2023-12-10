@@ -125,10 +125,18 @@
             </div>
           </td>
         </tr>
+
       </tbody>
-      <div *ngIf="tableData.length == 0">No Data</div>
+
     </table>
-    <div>
+    <div class="row" *ngIf="tableData.length == 0">
+      <div class="col-md-6 mx-auto">
+        <app-no-data></app-no-data>
+
+      </div>
+
+    </div>
+    <div *ngIf="tableData.length > 0">
       <mat-paginator
         #paginator
         class="demo-paginator"

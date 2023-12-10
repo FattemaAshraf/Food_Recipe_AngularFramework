@@ -32,7 +32,7 @@ export class SidebarComponent {
     {
       title: 'Home',
       icon: 'fa-house',
-      link: '/dasboard/home',
+      link: '/dashboard/home',
       isActive: this.isAdmin() || this.isUser(),
     },
     {
