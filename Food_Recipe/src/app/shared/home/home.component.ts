@@ -31,28 +31,28 @@ export class HomeComponent {
      icon: 'fa-users',
      link: '/dashboard/admin/users',
      isActive: this.isAdmin(),
-     length: '0'
+     length:  `+${localStorage.getItem('users')}`,
    },
    {
      title: 'Recipes',
      icon: 'fa-bowl-rice',
      link: '/dashboard/admin/recipes',
      isActive: this.isAdmin(),
-     length: '0'
+     length:  `+${localStorage.getItem('adminRecipes')}`,
    },
    {
      title: 'Categories',
      icon: 'fa-calendar-days',
      link: '/dashboard/admin/categories',
      isActive: this.isAdmin(),
-     length: '0'
+     length:  `+${localStorage.getItem('categories')}`,
    },
    {
      title: 'User Recipes',
      icon: 'fa-bowl-rice',
      link: '/dashboard/user/recipes',
      isActive: this.isUser(),
-     length: `+ ${localStorage.getItem('reciepsUser')}`,
+     length: `+${localStorage.getItem('userRecipes')}`,
    },
    {
      title: 'Favourites',

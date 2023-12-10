@@ -39,7 +39,17 @@ export class CategoriesComponent implements OnInit {
         console.log(res);
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
-      },
+
+      },error: ()=>{
+
+      },complete:()=>{
+        let categories =this.tableData?.length;
+        if (categories !== undefined) {
+          localStorage.setItem('categories', categories.toLocaleString());
+        } else {
+          localStorage.setItem('categories', '0');
+        }
+      }
     });
   }
   handlePageEvent(e: PageEvent) {

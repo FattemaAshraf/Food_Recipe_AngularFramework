@@ -52,6 +52,12 @@ export class UsersComponent {
         console.log(res);
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
+        let users = this.tableData?.length;
+        if (users !== undefined) {
+          localStorage.setItem('users', users.toLocaleString());
+        } else {
+          localStorage.setItem('users', '0');
+        }
       },
     });
   }

@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
-import { IRecipe, IRecipeTable, ITag } from 'src/app/admin/recipes/models/recipe';
+import {
+  IRecipe,
+  IRecipeTable,
+  ITag,
+} from 'src/app/admin/recipes/models/recipe';
 import { RecipeService } from 'src/app/admin/recipes/services/recipe.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
@@ -13,7 +17,7 @@ import { FavouritesService } from '../../favourites/services/favourites.service'
 @Component({
   selector: 'app-user-recipes',
   templateUrl: './user-recipes.component.html',
-  styleUrls: ['./user-recipes.component.scss']
+  styleUrls: ['./user-recipes.component.scss'],
 })
 export class UserRecipesComponent {
   searchValue: string = '';
@@ -22,16 +26,17 @@ export class UserRecipesComponent {
   tableResponse: IRecipeTable | undefined;
   tableData: IRecipe[] = [];
   message: string | undefined;
-  tags: ITag[] =[];
+  tags: ITag[] = [];
   tagId: any;
   pathHttps: string = 'https://upskilling-egypt.com:443/';
-  constructor(public dialog: MatDialog,
-     private toastr: ToastrService,
-     private _recipeService: RecipeService,
-     private _router: Router,
-     private _helperService: HelperService,
-     private _favService: FavouritesService
-     ) {}
+  constructor(
+    public dialog: MatDialog,
+    private toastr: ToastrService,
+    private _recipeService: RecipeService,
+    private _router: Router,
+    private _helperService: HelperService,
+    private _favService: FavouritesService
+  ) {}
   ngOnInit() {
     this.getTableData();
     this.getAllTags();
@@ -41,7 +46,7 @@ export class UserRecipesComponent {
     let params = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
-      tagId:this.tagId,
+      tagId: this.tagId,
       name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
     };
 
@@ -51,8 +56,8 @@ export class UserRecipesComponent {
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
         console.log(this.tableData?.length);
-        let recipes =this.tableData?.length
-localStorage.setItem('reciepsUser',recipes.toLocaleString())
+        let userRecipes = this.tableData?.length;
+        localStorage.setItem('userRecipes', userRecipes.toLocaleString());
       },
     });
   }
@@ -119,39 +124,37 @@ localStorage.setItem('reciepsUser',recipes.toLocaleString())
       },
     });
   }
-getAllTags(){
-  this._helperService.getTags().subscribe({
-    next: (res) => {
-      console.log(res);
-      this.tags=res;
-    }
-  })
-}
-openDialog(recipeItem: IRecipe): void {
-  const dialogRef = this.dialog.open(RecipeDetailsComponent, {
-    data: recipeItem,
-    width: '40%',
-  });
-
-  dialogRef.afterClosed().subscribe((result) => {
-    console.log('The dialog was closed');
-    console.log(result);
-    this.addToFavourite(result)
-
-   });
-}
-addToFavourite(id: number){
-this._favService.onAddToFavourite(id).subscribe({
-  next: (res)=>{
-    console.log(res);
-
-  },error: (err)=>{
-    console.log(err.error.message);
-
-  },complete: ()=>{
-    this.toastr.success('added to favourites', 'Done!');
-
+  getAllTags() {
+    this._helperService.getTags().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.tags = res;
+      },
+    });
   }
-})
-}
+  openDialog(recipeItem: IRecipe): void {
+    const dialogRef = this.dialog.open(RecipeDetailsComponent, {
+      data: recipeItem,
+      width: '40%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      this.addToFavourite(result);
+    });
+  }
+  addToFavourite(id: number) {
+    this._favService.onAddToFavourite(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+      },
+      complete: () => {
+        this.toastr.success('added to favourites', 'Done!');
+      },
+    });
+  }
 }
