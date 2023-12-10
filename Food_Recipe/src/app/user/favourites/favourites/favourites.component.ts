@@ -36,6 +36,9 @@ export class FavouritesComponent {
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
         console.log(this.tableData);
+        console.log(this.tableData.length);
+        let favourites = this.tableData?.length;
+        localStorage.setItem('favourites', favourites.toLocaleString());
       },
       error: (err) => {
         console.log(err.error.message);

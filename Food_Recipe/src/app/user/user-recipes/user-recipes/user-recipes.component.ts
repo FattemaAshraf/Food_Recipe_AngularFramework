@@ -51,7 +51,8 @@ export class UserRecipesComponent {
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
         console.log(this.tableData?.length);
-
+        let recipes =this.tableData?.length
+localStorage.setItem('reciepsUser',recipes.toLocaleString())
       },
     });
   }

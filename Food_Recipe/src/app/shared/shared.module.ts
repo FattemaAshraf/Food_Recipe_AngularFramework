@@ -10,6 +10,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -28,7 +29,8 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
     FormsModule,
     MatDialogModule,
     MatPaginatorModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    RouterModule
   ],
   exports:[
     ReactiveFormsModule,
