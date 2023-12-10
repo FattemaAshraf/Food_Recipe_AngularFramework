@@ -35,7 +35,7 @@
               (keyup)="getTableData()"
               type="text"
               class="form-control rounded"
-              placeholder="search by name "
+              placeholder="Search Here"
               aria-label="search"
               aria-describedby="basic-addon1"
             />
@@ -47,7 +47,7 @@
               class="form-select"
               aria-label="Default select example"
             >
-              <option selected>All</option>
+              <option selected value="0">All</option>
               <option *ngFor="let item of tags" [value]="item.id">
                 {{ item.name }}
               </option>

@@ -28,7 +28,7 @@
   <div class="container-fluid">
     <div class="d-flex gap-5 justify-content-between align-items-center">
       <div class="flex-grow-1">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-md-10">
             <input
             [(ngModel)]="searchValue"
@@ -43,7 +43,7 @@
           <div class="col-md-2">
             <button
             type="submit"
-            class="primary"
+            class="primary w-100"
             [routerLink]="['/dashboard/user/recipes']"
           >
             All Recipes <i class="fa-solid fa-arrow-right pl-2"></i>
@@ -60,12 +60,14 @@
   <div class="container">
     <div class="row">
       <ng-container *ngIf="tableData.length > 0">
-
         <div class="col-md-4" *ngFor="let item of tableData">
           <div class="card-fav" >
             <a (click)="openDeleteDialog(item)"><i class="fa-solid fa-trash-can fa-1x"></i></a>
-            <div>
-              <img [src]="pathHttps + item.recipe.imagePath" alt="" />
+            <div *ngIf="item.recipe.imagePath">
+              <img [src]="pathHttps + item.recipe.imagePath" alt="" class="img-fluid" />
+            </div>
+            <div *ngIf="!item.recipe.imagePath" class="no-img">
+              <h4 class="text-muted">Not Image Available</h4>
             </div>
             <div class="description">
               <h4>{{item.recipe.name}}</h4>
@@ -74,11 +76,11 @@
           </div>
         </div>
       </ng-container>
-
-        <div class="col-md-6 mx-auto" *ngIf="tableData.length == 0" >
+      <ng-container *ngIf="tableData.length == 0">
+        <div class="col-md-6 mx-auto"  >
           <app-no-data></app-no-data>
-
       </div>
+      </ng-container>
     </div>
   </div>
 </section>

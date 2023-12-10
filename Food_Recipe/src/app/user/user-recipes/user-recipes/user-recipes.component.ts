@@ -43,12 +43,22 @@ export class UserRecipesComponent {
   }
 
   getTableData() {
-    let params = {
-      pageSize: this.pageSize,
-      pageNumber: this.pageNumber,
-      tagId: this.tagId,
-      name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
-    };
+    let params={}
+    if(this.tagId>=1){
+      params = {
+        pageSize: this.pageSize,
+        pageNumber: this.pageNumber,
+        tagId: this.tagId,
+        name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
+      };
+    }else{
+      params = {
+        pageSize: this.pageSize,
+        pageNumber: this.pageNumber,
+        name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
+      };
+    }
+
 
     this._recipeService.getRecipes(params).subscribe({
       next: (res: IRecipeTable) => {
