@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit {
   pageNumber: number = 1;
   pageSize: number = 5;
   tableResponse: ICategoryTable | undefined;
-  tableData: ICategory[] | undefined = [];
+  tableData:  ICategory[]  = [];
   message: string | undefined;
   constructor(
     private _categoryService: CategoryService,
@@ -35,7 +35,7 @@ export class CategoriesComponent implements OnInit {
       name: this.searchValue, //for pass value from ngmodel to keyup reflect to table data
     };
     this._categoryService.getCategories(params).subscribe({
-      next: (res) => {
+      next: (res: ICategoryTable) => {
         console.log(res);
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
@@ -70,7 +70,7 @@ export class CategoriesComponent implements OnInit {
   openAddDialog(): void {
     const dialogRef = this.dialog.open(AddEditCategoryComponent, {
       data: {},
-      width: '30%',
+      width: '40%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -111,6 +111,8 @@ export class CategoriesComponent implements OnInit {
         this.onDeleteCategory(result.id);
       }
     });
+
+
   }
 
   onDeleteCategory(id: number) {
@@ -128,4 +130,35 @@ export class CategoriesComponent implements OnInit {
       },
     });
   }
+
+  openEditDialog(data: ICategory){
+    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
+      data: data,
+      width: '40%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.getTableData(); //updaated data in table
+      }
+    });
+  }
+  oneditNewCategory(id:number,data: ICategory){
+    this._categoryService.editCategory(id,data).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success(this.message, 'Done!');
+        this.getTableData();
+      },
+    });
+  }
+
 }

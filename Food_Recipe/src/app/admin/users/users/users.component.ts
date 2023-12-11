@@ -21,7 +21,7 @@ export class UsersComponent {
   pageSize: number = 5;
   pathHttps: string = 'https://upskilling-egypt.com:443/';
   tableResponse: IUsersAdminTable | undefined;
-  tableData: IUsersAdmin[] | undefined = [];
+  tableData: IUsersAdmin[]  = [];
   constructor(
     private _usersAdmin: UsersAdminService,
     public dialog: MatDialog,
@@ -48,7 +48,7 @@ export class UsersComponent {
       }
     }
     this._usersAdmin.getAllUsers(params).subscribe({
-      next: (res) => {
+      next: (res:IUsersAdminTable) => {
         console.log(res);
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
@@ -110,24 +110,25 @@ export class UsersComponent {
       console.log(result);
       if (result) {
         console.log(result.id);
-        this.onDeleteCategory(result.id);
+        this.onDeleteUser(result.id);
       }
     });
   }
 
-  onDeleteCategory(id: number) {
-    // this._categoryService.deleteCategory(id).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (err) => {
-    //     console.log(err.error.message);
-    //     this.toastr.error(err.error.message, 'error!');
-    //   },
-    //   complete: () => {
-    //     this.toastr.success(this.message, 'Done!');
-    //     this.getTableData();
-    //   },
-    // });
+  onDeleteUser(id: number) {
+    this._usersAdmin.deleteUser(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
+      },
+      complete: () => {
+        this.toastr.success('deleted successfully', 'Done!');
+        this.getTableData();
+      },
+    });
   }
+
 }

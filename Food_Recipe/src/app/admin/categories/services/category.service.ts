@@ -14,7 +14,9 @@ export class CategoryService {
   addCategory(data: any): Observable<any> {
     return this._httpClient.post('Category', { name: data });
   }
-
+  editCategory(id:number,data: any): Observable<any> {
+    return this._httpClient.put(`Category/${id}`, data);
+  }
   deleteCategory(id:number): Observable<any> {
     return this._httpClient.delete(`Category/${id}`);
   }

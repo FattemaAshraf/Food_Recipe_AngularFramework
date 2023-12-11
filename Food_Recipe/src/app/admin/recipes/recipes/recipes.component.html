@@ -94,11 +94,16 @@
         <tr *ngFor="let item of tableData">
           <td>{{ item.name }}</td>
           <td class="w-25">
-            <img
-              [src]="pathHttps + item.imagePath"
-              class="w-100 rounded-lg border-success"
-              alt=""
-            />
+            <div *ngIf="item.imagePath">
+              <img
+                [src]="pathHttps + item.imagePath"
+                class="w-25 rounded-lg border-success"
+                alt=""
+              />
+            </div>
+            <div *ngIf="!item.imagePath" class="no-img">
+              <p class="text-muted">Not Image Available</p>
+            </div>
           </td>
           <td>{{ item.description }}</td>
           <td>{{ item.price }}</td>
@@ -138,8 +143,12 @@
           </td>
         </tr>
       </tbody>
-      <div *ngIf="tableData.length == 0">No Data</div>
     </table>
+    <div class="row" *ngIf="tableData.length == 0">
+      <div class="col-md-6 mx-auto">
+        <app-no-data></app-no-data>
+      </div>
+    </div>
     <div>
       <mat-paginator
         #paginator
