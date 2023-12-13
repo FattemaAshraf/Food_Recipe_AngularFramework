@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEditCategoryComponent } from '../components/add-edit-category/add-edit-category.component';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-categories',
@@ -22,7 +23,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private _categoryService: CategoryService,
     public dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {}
   ngOnInit() {
     this.getTableData();

@@ -1,54 +1,57 @@
-#sidebar{
+#sidebar {
   border-top-right-radius: 58px;
   height: 100vh;
-  ul{
+  ul {
     padding-left: 0;
-    li{
+    li {
       padding: 10px 20px 10px 30px;
-position: relative;
-      a{
+      position: relative;
+      a {
         text-decoration: none;
 
-        i{
+        i {
           margin-right: 10px;
           width: 1.4375rem;
           color: white;
-
         }
-        span{
+        span {
           color: #ffffff81;
           font-weight: 500;
-          font-size: small;
-
-
+          font-size: 15px;
         }
       }
-
     }
-    li:hover::after{
+    li:hover::after {
       position: absolute;
-      content: '';
+      content: "";
       height: 100%;
       width: 16px;
       left: 0;
       top: 0;
-      background-color: #4AA35A;
+      background-color: #4aa35a;
     }
-    li:hover{
-      background-color: rgba($color: #4AA35A, $alpha: .1);
+    li:hover {
+      background-color: rgba($color: #4aa35a, $alpha: 0.1);
     }
   }
-  img{
+  img {
     cursor: pointer;
   }
-  img:hover{
-    transform: scale(.9);
-    background-color: rgba($color: #4AA35A, $alpha: .1);
+  img:hover {
+    transform: scale(0.9);
+    background-color: rgba($color: #4aa35a, $alpha: 0.1);
     border-radius: 50%;
   }
 }
-.sticky{
+.sticky {
   position: sticky;
-top: 0;
-z-index: 1071;
+  top: 0;
+  z-index: 1071;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+ul {
+  list-style: none;
 }

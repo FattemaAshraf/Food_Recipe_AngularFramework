@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ChangePasswordComponent } from '../../shared/sidebar/change-password/change-password.component';
+import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 
 
 @Component({
@@ -10,9 +11,8 @@ import { ChangePasswordComponent } from '../../shared/sidebar/change-password/ch
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
-  isOpened: boolean = true;
-
+export class DashboardComponent  {
+  @ViewChild(SidebarComponent) sideBar: SidebarComponent | undefined
   constructor( public dialog: MatDialog,private _authService: AuthService, private _router: Router) {}
 
 

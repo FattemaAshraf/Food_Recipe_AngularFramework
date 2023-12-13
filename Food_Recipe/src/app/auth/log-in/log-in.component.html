@@ -48,7 +48,7 @@
             <span class="text-danger mb-3" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
               <span *ngIf="loginForm.get('password')?.hasError('required')">Password is required</span>
               <span *ngIf="loginForm.get('password')?.hasError('minLength')">Password must be at least 6 characters long</span>
-              <span *ngIf="loginForm.get('password')?.hasError('pattern')">Password must have capital and small characters and numbers</span>
+              <!-- <span *ngIf="loginForm.get('password')?.hasError('pattern')">Password must have capital and small characters and numbers</span> -->
             </span>
 
             <div class="d-flex justify-content-between">

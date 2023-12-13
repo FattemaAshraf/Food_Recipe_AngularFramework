@@ -1,4 +1,7 @@
-
+.row{
+margin-right: 0;
+margin-left: 0;
+}
 .opened > div{
   transition: all .3s ease-in-out;
 }
@@ -7,3 +10,8 @@
   top: 0;
   z-index: 1071;
 }
+.m-4{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+

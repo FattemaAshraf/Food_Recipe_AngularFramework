@@ -16,6 +16,7 @@ import { UsersAdminService } from '../services/users-admin.service';
 })
 export class UsersComponent {
   searchValue: string = '';
+  isCards:boolean= false;
   groupId:number =0;
   pageNumber: number = 1;
   pageSize: number = 5;
@@ -61,6 +62,7 @@ export class UsersComponent {
       },
     });
   }
+
   handlePageEvent(e: PageEvent) {
     console.log(e);
     this.pageNumber = e.pageIndex;
@@ -129,6 +131,16 @@ export class UsersComponent {
         this.getTableData();
       },
     });
+
+  }
+  getShowCards(){
+    if(!this.isCards){
+
+      this.isCards=true;
+    }else{
+      this.isCards=false;
+
+    }
   }
 
 }

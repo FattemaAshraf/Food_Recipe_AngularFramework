@@ -1,10 +1,10 @@
-<div id="sidebar" class="bg-dark-color mr-2 sticky">
+<div id="sidebar" class="bg-dark-color  sticky">
   <div class="container-fluid">
     <div class="row">
       <div class="text-center mt-3 " (click)="isOpened=!isOpened">
         <img src="../../../assets/logo-icon.png" alt="" class="img-fluid" />
       </div>
-      <div >
+      <div class="px-0">
         <ul>
           <ng-container  *ngFor="let item of menu">
             <li
@@ -12,7 +12,7 @@
             [routerLink]="item.link"
             [class]="isOpened?'':'d-flex justify-content-center'"
             >
-             <a><i [class]="'fa-solid' +' '+item.icon"></i>
+             <a><i [class]="'fa-solid fa-1x' +' '+item.icon"></i>
                <span routerLinkActive="text-white" [class]="isOpened?'':'d-none'"
                >{{item.title}}</span></a>
            </li>
@@ -21,7 +21,7 @@
 
           <li [class]="isOpened?'':'d-flex justify-content-center'">
             <a mat-button (click)="openDialogCahngePassword()"
-              ><i class="fa-solid fa-unlock-keyhole"></i
+              ><i class="fa-solid  fa-unlock-keyhole"></i
               ><span routerLinkActive="text-white" [class]="isOpened?'':'d-none'" >Change Password</span></a
             >
           </li>

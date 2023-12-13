@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,8 +14,7 @@ import { RouterModule } from '@angular/router';
 import { NoDataComponent } from './no-data/no-data.component';
 import { TrimDescriptionPipe } from './pipes/trim-description.pipe';
 import { LogOutComponent } from './sidebar/log-out/log-out.component';
-
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,7 @@ import { LogOutComponent } from './sidebar/log-out/log-out.component';
     MatDialogModule,
     MatPaginatorModule,
     NgxDropzoneModule,
-    RouterModule
+    RouterModule,
   ],
   exports:[
     ReactiveFormsModule,
@@ -49,8 +48,8 @@ import { LogOutComponent } from './sidebar/log-out/log-out.component';
     MatPaginatorModule,
     NgxDropzoneModule,
     NoDataComponent,
-    TrimDescriptionPipe
-  ]
+    TrimDescriptionPipe,
+  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
 export class SharedModule { }

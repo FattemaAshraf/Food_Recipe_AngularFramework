@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ChangePasswordComponent } from 'src/app/shared/sidebar/change-password/change-password.component';
 import { LogOutComponent } from './log-out/log-out.component';
+import { DashboardComponent } from 'src/app/dashboard/dashboard/dashboard.component';
 
 interface IMenu {
   title: string;
@@ -17,18 +18,22 @@ interface IMenu {
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  isOpened: boolean = true;
+
+   isOpened: boolean = true;
   constructor(
     private _authService: AuthService,
     private _router: Router,
     public dialog: MatDialog
   ) {}
+
   isAdmin(): boolean {
     return this._authService.role == 'SuperAdmin' ? true : false;
   }
   isUser(): boolean {
     return this._authService.role == 'SystemUser' ? true : false;
   }
+
+
   menu: IMenu[] = [
     {
       title: 'Home',
@@ -82,3 +87,7 @@ export class SidebarComponent {
     });
   }
 }
+function output(): (target: SidebarComponent, propertyKey: "isOpened") => void {
+  throw new Error('Function not implemented.');
+}
+
