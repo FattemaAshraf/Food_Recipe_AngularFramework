@@ -4,8 +4,8 @@
       <div class="col-md-9 d-flex align-items-center">
         <div class="px-5">
           <h2 *ngIf="isViewPage">View <span class="text-main">the Recipe !</span></h2>
-          <h2 *ngIf="isUpdatedPage">Edit <span class="text-main">the Recipe !</span></h2>
-          <h2 *ngIf="!isUpdatedPage && !isViewPage">Fill <span class="text-main">the Recipe !</span></h2>
+          <h2 *ngIf="isUpdatedPage && !isViewPage  ">Edit <span class="text-main">the Recipe !</span></h2>
+          <h2 *ngIf="!isUpdatedPage">Fill <span class="text-main">the Recipe !</span></h2>
           <p>
             you can now fill the meals easily using the table and form , click
             here and sill it with the table !
@@ -121,7 +121,7 @@
         ></textarea>
       </div>
       <div>
-        <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [disabled]="!isUpdatedPage">
+        <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [disabled]="isViewPage">
           <ngx-dropzone-label *ngIf="!imgSrc">
             <i class="fa-solid fa-upload fa-3x mb-3"></i>
             <div>
@@ -143,7 +143,7 @@
         </ngx-dropzone>
       </div>
       <div class="d-flex justify-content-end gap-2 my-4">
-        <button type="submit" class="primary px-4">Save</button>
+        <button type="submit" *ngIf="!isViewPage" class="primary px-4">Save</button>
         <button
           type="button"
           class="outline-primary"

@@ -45,9 +45,8 @@ export class AddRecipeComponent {
     }
 
     this._activatedRoute.url.subscribe(url => {
-      this.isUpdatedPage = url.some(segment => segment.path === 'edit');
-      console.log(this.isUpdatedPage);
-      this.isViewPage= true;
+      this.isViewPage = url.some(segment => segment.path === 'view');
+      console.log(this.isViewPage);
       this.disableFormControls();
     });
   }
@@ -151,7 +150,7 @@ export class AddRecipeComponent {
     });
   }
   disableFormControls() {
-    if (!this.isUpdatedPage) {
+    if (this.isViewPage) {
       this.recipeForm.get('name')?.disable();
       this.recipeForm.get('price')?.disable();
       this.recipeForm.get('description')?.disable();
