@@ -10,11 +10,16 @@ import { ICategory } from '../../models/category';
 export class AddEditCategoryComponent {
   categoryName: string = '';
   isUpdatedPage: boolean = false;
-  categoryId: any;
   constructor(
     public dialogRef: MatDialogRef<AddEditCategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ICategory
-  ) {}
+  ) {
+
+    if(data){
+this.categoryName= data.name;
+this.isUpdatedPage= true;
+    }
+  }
   ngOnit() {
     console.log(this.data);
   }

@@ -11,11 +11,14 @@ export class CategoryService {
   getCategories(data: any): Observable<any> {
     return this._httpClient.get('Category', { params: data });
   }
+  getCategoryById(id: number): Observable<any> {
+    return this._httpClient.get(`Category/${id}`);
+  }
   addCategory(data: any): Observable<any> {
     return this._httpClient.post('Category', { name: data });
   }
   editCategory(id:number,data: any): Observable<any> {
-    return this._httpClient.put(`Category/${id}`, data);
+    return this._httpClient.put(`Category/${id}`, { name: data });
   }
   deleteCategory(id:number): Observable<any> {
     return this._httpClient.delete(`Category/${id}`);

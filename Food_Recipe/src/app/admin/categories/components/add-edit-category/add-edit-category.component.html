@@ -1,6 +1,7 @@
 <div class="card-auth">
   <div class="d-flex justify-content-between mb-4 align-items-center">
-    <h2>Add Category</h2>
+    <h2 *ngIf="isUpdatedPage">Edit <span class="text-main">the Category !</span></h2>
+    <h2 *ngIf="!isUpdatedPage">Fill <span class="text-main">the Category !</span></h2>
     <a (click)="onNoClick()"
       ><i class="fa-regular fa-circle-xmark text-danger"></i
     ></a>

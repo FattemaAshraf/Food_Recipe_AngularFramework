@@ -69,7 +69,7 @@ export class UsersComponent {
 
   }
 
-  openAddDialog(): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(AddEditCategoryComponent, {
       data: {},
       width: '30%',

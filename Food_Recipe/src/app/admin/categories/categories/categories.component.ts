@@ -141,7 +141,7 @@ export class CategoriesComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
       if (result) {
-        this.getTableData(); //updaated data in table
+        this.oneditNewCategory(data.id, result)
       }
     });
   }

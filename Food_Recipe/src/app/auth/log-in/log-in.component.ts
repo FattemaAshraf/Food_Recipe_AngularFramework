@@ -20,7 +20,7 @@ export class LogInComponent {
     password: new FormControl(null, [
       Validators.required,
       Validators.minLength(6),
-      //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$'),
+      // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)(?!.* ).{8,16}$'),
     ]),
   });
   message: string = '"Welcome Back"';

@@ -46,10 +46,11 @@
               <span class="eye-icon" (click)="hide = !hide"><i class="fa-solid" [class]="hide ?'fa-eye-slash':'fa-eye'"></i></span>
             </div>
             <span class="text-danger mb-3" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-              <span *ngIf="loginForm.get('password')?.hasError('required')">password is required </span>
-              <span *ngIf="loginForm.get('password')?.getError?.length">Password must be at least 6 characters long</span>
-              <!-- <span *ngIf="loginForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
+              <span *ngIf="loginForm.get('password')?.hasError('required')">Password is required</span>
+              <span *ngIf="loginForm.get('password')?.hasError('minLength')">Password must be at least 6 characters long</span>
+              <span *ngIf="loginForm.get('password')?.hasError('pattern')">Password must have capital and small characters and numbers</span>
             </span>
+
             <div class="d-flex justify-content-between">
               <a class="text-decoration-none text-secondry" routerLink="/auth/register"
                 >Register now?</a
