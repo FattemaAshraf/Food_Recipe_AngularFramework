@@ -15,6 +15,7 @@ import { HelperService } from 'src/app/services/helper.service';
 })
 export class RecipesComponent {
   searchValue: string = '';
+  isView: boolean = false;
   pageNumber: number = 1;
   pageSize: number = 5;
   tableResponse: IRecipeTable | undefined;

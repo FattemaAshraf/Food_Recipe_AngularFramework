@@ -28,6 +28,7 @@ export class AddRecipeComponent {
   pathHttps: string = 'https://upskilling-egypt.com:443/';
   isUpdatedPage: boolean = false;
   recipeId: any;
+  isViewPage: boolean=false;
   constructor(
     private _helperService: HelperService,
     private toastr: ToastrService,
@@ -42,6 +43,13 @@ export class AddRecipeComponent {
     }else{
       this.isUpdatedPage = false;
     }
+
+    this._activatedRoute.url.subscribe(url => {
+      this.isUpdatedPage = url.some(segment => segment.path === 'edit');
+      console.log(this.isUpdatedPage);
+      this.isViewPage= true;
+      this.disableFormControls();
+    });
   }
   ngOnInit() {
     this.getAllTags();
@@ -141,5 +149,15 @@ export class AddRecipeComponent {
         })
       }
     });
+  }
+  disableFormControls() {
+    if (!this.isUpdatedPage) {
+      this.recipeForm.get('name')?.disable();
+      this.recipeForm.get('price')?.disable();
+      this.recipeForm.get('description')?.disable();
+      this.recipeForm.get('categoriesIds')?.disable();
+      this.recipeForm.get('tagId')?.disable();
+      this.recipeForm.get('recipeImage')?.disable();
+    }
   }
 }
