@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { ICategory, ICategoryTable } from '../../categories/models/category';
-import { CategoryService } from '../../categories/services/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material/paginator';
-import { AddEditCategoryComponent } from '../../categories/components/add-edit-category/add-edit-category.component';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { IUsersAdmin, IUsersAdminTable } from '../models/users-admin';
 import { UsersAdminService } from '../services/users-admin.service';
@@ -16,7 +13,7 @@ import { UsersAdminService } from '../services/users-admin.service';
 })
 export class UsersComponent {
   searchValue: string = '';
-  isCards:boolean= false;
+  isCards:boolean= true;
   groupId:number =0;
   pageNumber: number = 1;
   pageSize: number = 5;
@@ -71,40 +68,11 @@ export class UsersComponent {
 
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      data: {},
-      width: '30%',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
-      if (result) {
-        this.onAddNewCategory(result);
-      }
-    });
-  }
-  onAddNewCategory(data: string) {
-    // this._categoryService.addCategory(data).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (err) => {
-    //     console.log(err.error.message);
-    //     this.toastr.error(err.error.message, 'error!');
-    //   },
-    //   complete: () => {
-    //     this.toastr.success(this.message, 'Done!');
-    //     this.getTableData(); //updaated data in table
-    //   },
-    // });
-  }
-  openDeleteDialog(categoryData: any): void {
-    console.log(categoryData);
+  openDeleteDialog(userData: any): void {
+    console.log(userData);
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: categoryData,
-      width: '30%',
+      data: userData,
+      width: '40%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -133,14 +101,6 @@ export class UsersComponent {
     });
 
   }
-  getShowCards(){
-    if(!this.isCards){
 
-      this.isCards=true;
-    }else{
-      this.isCards=false;
-
-    }
-  }
 
 }

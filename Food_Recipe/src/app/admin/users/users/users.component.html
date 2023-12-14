@@ -58,7 +58,7 @@
       </div>
       <div class="">
         <button
-        (click)="getShowCards()"
+        (click)="isCards=!isCards"
           [class]="isCards?'primary':'outline-primary'" >
           <span class="mr-2"> Show as Cards </span> <i class="fa-solid fa-power-off"></i>
         </button>
@@ -114,7 +114,7 @@
               </a>
               <ul class="dropdown-menu ">
                 <li>
-                  <a (click)="openDialog()" class="dropdown-item">
+                  <a [routerLink]="['/dashboard/admin/users/view/', item.id]" class="dropdown-item">
                     <span><i class="fa-regular fa-eye text-main"></i></span>
                     <span class="p-2">View</span>
                   </a>

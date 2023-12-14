@@ -1,0 +1,141 @@
+<section id="recipes-header" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex flex-column px-5 ">
+        <div>
+          <h2 *ngIf="isViewPage">View <span class="text-main">the User!</span></h2>
+          <p>
+            you can now fill the meals easily using the table and form , click
+            here and sill it with the table !
+          </p>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="primary"
+            [routerLink]="['/dashboard/admin/users']"
+          >
+            All Users <i class="fa-solid fa-arrow-right pl-2"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-3 img-position">
+        <div>
+          <img class="img-fluid" *ngIf="userData?.imagePath"
+          [src]="pathHttps+userData?.imagePath"
+          alt="" />
+
+          <img class="img-fluid"  *ngIf="!userData?.imagePath"
+          src="../../../assets/avatar.png"
+          alt="" />
+          </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- start Form Data -->
+<section class="card-auth">
+
+  <form [formGroup]="userForm" >
+    <div class="profile-info">
+      <h1 class="mb-0">
+        {{userData?.userName}}
+      </h1>
+      <p>{{userData?.group?.name}}</p>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100 text-main" id="basic-addon1">
+              email
+           </span>
+          </div>
+          <input
+            formControlName="email"
+            type="text"
+            class="form-control text-muted"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100 text-main" id="basic-addon1">
+              country
+           </span>
+          </div>
+          <input
+            formControlName="country"
+            type="text"
+            class="form-control text-muted"
+            aria-label="Name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100 text-main" id="basic-addon1">
+              phoneNumber
+           </span>
+          </div>
+          <input
+            formControlName="phoneNumber"
+            type="text"
+            class="form-control text-muted"
+            aria-label="Name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100 text-main" id="basic-addon1">
+              joinDate
+           </span>
+          </div>
+          <input
+            formControlName="joinDate"
+            type="text"
+            class="form-control text-muted"
+            aria-label="Name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text h-100 text-main" id="basic-addon1">
+              modificationDate
+           </span>
+          </div>
+          <input
+            formControlName="modificationDate"
+            type="text"
+            class="form-control text-muted"
+            aria-label="Name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+      </div>
+      <div class="d-flex justify-content-end gap-2 my-4">
+        <button type="submit" *ngIf="!isViewPage" class="primary px-4">Save</button>
+        <button (click)="openDeleteDialog(userId)" *ngIf="isViewPage" class="outline-danger px-4">Delete</button>
+        <button
+          type="button"
+          class="outline-primary"
+          [routerLink]="['/dashboard/admin/users']"
+        >
+          Cancel
+        </button>
+      </div>
+  </form>
+</section>
