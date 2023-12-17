@@ -1,44 +1,102 @@
-.card-fav{
+.card-fav {
+  border-radius: 0.9375rem;
+  background: #fff;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 20px 10px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  img {
+    width: 100%;
+    height: 180px;
+    border-radius: 0.9375rem 0.9375rem 2.1875rem 2.1875rem;
+  }
+  .description {
+    color: #3a3a3d;
+    padding: 20px;
+  }
+  .no-img {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  a {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    border: 2px solid #1f263e;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    i {
+      color: red;
+    }
+  }
+  a:hover {
+    background-color: #ffffff;
+    border: none;
+  }
+}
+.card-fav:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#cards-profile {
+.col-md-2{
   border-radius: 0.9375rem;
   background: #FFF;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
   margin: 20px 10px;
   transition: all .2s ease-in;
-  position: relative;
-  img{
-    width: 100%;
-    height: 180px;
-    border-radius: 0.9375rem 0.9375rem 2.1875rem 2.1875rem;
+  padding: 0;
+  .description{
+    margin-left: 10px;
   }
-.description{
-  color: #3A3A3D;
-  padding: 20px;
-}
-.no-img{
-  height: 180px;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-a{
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-  border: 2px solid #1F263E ;
-  border-radius: 5px;
-  padding: 5px;
-  transition: all .3s ease;
-  i{
-    color: red;
+  .header-profile {
+    background-image: url(../../../../assets/headerhome.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #009247;
+    height: 100px;
+    position: relative;
+    img {
+      border-radius: 50%;
+      border: 10px solid white;
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      right: 10%;
+      transform: translateY(50%);
+    }
+    a{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      border: 2px solid #1F263E ;
+      border-radius: 5px;
+      padding: 5px;
+      transition: all .3s ease;
+      i{
+        color: red;
+      }
+    }
+    a:hover{
+      background-color: #1F263E;
+      border: none;
+    }
+
   }
 }
-a:hover{
-  background-color: #1F263E;
-  border: none;
-}
-}
-.card-fav:hover{
+
+.col-md-2:hover{
   transform: scale(1.05);
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 }

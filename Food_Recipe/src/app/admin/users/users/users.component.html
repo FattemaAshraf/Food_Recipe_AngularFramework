@@ -50,7 +50,6 @@
               <option [value]="0">All</option>
               <option [value]="1">Super Admin</option>
               <option [value]="2">System User</option>
-
             </select>
             <!-- <h2>{{tagId}}</h2> -->
           </div>
@@ -58,9 +57,11 @@
       </div>
       <div class="">
         <button
-        (click)="isCards=!isCards"
-          [class]="isCards?'primary':'outline-primary'" >
-          <span class="mr-2"> Show as Cards </span> <i class="fa-solid fa-power-off"></i>
+          (click)="isCards = !isCards"
+          [class]="isCards ? 'primary' : 'outline-primary'"
+        >
+          <span class="mr-2"> Show as Cards </span>
+          <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
     </div>
@@ -102,52 +103,77 @@
               <p class="text-muted">Not Image Available</p>
             </div>
           </td>
-          <td>{{ item.email | trimDescription:10 }}</td>
+          <td>{{ item.email | trimDescription : 10 }}</td>
           <td>{{ item.phoneNumber }}</td>
           <td>{{ item.country }}</td>
           <td>{{ item.group.name }}</td>
           <td>{{ item.creationDate | date : "dd-MM-yyyy , hh:mm a" }}</td>
           <td>
             <div class="dropdown text-center">
-              <a class="dropdown-toggle text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-ellipsis fa-lg  text-main"></i>
+              <a
+                class="dropdown-toggle text-muted"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-ellipsis fa-lg text-main"></i>
               </a>
-              <ul class="dropdown-menu ">
+              <ul class="dropdown-menu">
                 <li>
-                  <a [routerLink]="['/dashboard/admin/users/view/', item.id]" class="dropdown-item">
+                  <a
+                    [routerLink]="['/dashboard/admin/users/view/', item.id]"
+                    class="dropdown-item"
+                  >
                     <span><i class="fa-regular fa-eye text-main"></i></span>
                     <span class="p-2">View</span>
                   </a>
                 </li>
-                <li><a class="dropdown-item " (click)="openDeleteDialog(item)">
-                  <span><i class="fa-solid fa-trash-can text-danger"></i></span>
-                  <span class="p-2">Delete</span>
-                </a></li>
+                <li>
+                  <a class="dropdown-item" (click)="openDeleteDialog(item)">
+                    <span
+                      ><i class="fa-solid fa-trash-can text-danger"></i
+                    ></span>
+                    <span class="p-2">Delete</span>
+                  </a>
+                </li>
               </ul>
-            </div>        </tr>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <section id="favourites" class="my-4" *ngIf="!isCards">
-      <div class="container">
-        <div class="row">
-          <ng-container *ngIf="tableData.length > 0">
-            <div class="col-md-4" *ngFor="let item of tableData">
-              <div class="card-fav" >
-                <a (click)="openDeleteDialog(item)"><i class="fa-solid fa-trash-can fa-1x"></i></a>
+    <section id="cards-profile" class="my-4" *ngIf="!isCards">
+      <div class="row">
+        <ng-container *ngIf="tableData.length > 0">
+          <div class="col-md-2" *ngFor="let item of tableData" [routerLink]="['/dashboard/admin/users/view/', item.id]">
+            <div class="card-prof">
+              <div class="header-profile">
+                <a (click)="openDeleteDialog(item)"
+                  ><i class="fa-solid fa-trash-can fa-1x"></i
+                ></a>
                 <div *ngIf="item.imagePath">
-                  <img [src]="pathHttps + item.imagePath" alt="" class="img-fluid" />
+                  <img
+                    [src]="pathHttps + item.imagePath"
+                    alt=""
+                    class="img-fluid"
+                  />
                 </div>
                 <div *ngIf="!item.imagePath" class="no-img">
-                  <h4 class="text-muted">Not Image Available</h4>
-                </div>
-                <div class="description">
-                  <h4>{{item.userName}}</h4>
-                  <p>{{item.email| trimDescription}}</p>
+                  <img
+                    src="../../../assets/avatar.png"
+                    alt=""
+                    class="img-fluid"
+                  />
                 </div>
               </div>
+              <div class="description">
+                <h4 class="mb-0 mt-1">{{ item.userName }}</h4>
+                <p>{{ item.email }}</p>
+              </div>
             </div>
-          </ng-container>
-        </div>
+          </div>
+        </ng-container>
       </div>
     </section>
     <div class="row" *ngIf="tableData.length == 0">

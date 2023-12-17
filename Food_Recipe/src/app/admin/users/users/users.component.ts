@@ -13,7 +13,7 @@ import { UsersAdminService } from '../services/users-admin.service';
 })
 export class UsersComponent {
   searchValue: string = '';
-  isCards:boolean= true;
+  isCards:boolean= false;
   groupId:number =0;
   pageNumber: number = 1;
   pageSize: number = 5;
