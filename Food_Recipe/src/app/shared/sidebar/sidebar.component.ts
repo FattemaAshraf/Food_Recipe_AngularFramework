@@ -87,7 +87,5 @@ export class SidebarComponent {
     });
   }
 }
-function output(): (target: SidebarComponent, propertyKey: "isOpened") => void {
-  throw new Error('Function not implemented.');
-}
+
 

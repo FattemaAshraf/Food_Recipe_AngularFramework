@@ -44,7 +44,7 @@ export class CategoriesComponent implements OnInit {
       },error: ()=>{
 
       },complete:()=>{
-        let categories =this.tableData?.length;
+        let categories =this.tableResponse?.totalNumberOfRecords;
         if (categories !== undefined) {
           localStorage.setItem('categories', categories.toLocaleString());
         } else {

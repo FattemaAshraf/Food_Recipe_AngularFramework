@@ -14,11 +14,15 @@ export class AddEditCategoryComponent {
     public dialogRef: MatDialogRef<AddEditCategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ICategory
   ) {
-
-    if(data){
-this.categoryName= data.name;
-this.isUpdatedPage= true;
+    if (data.id != null) {
+      this.categoryName = data.name;
+      this.isUpdatedPage = true;
+      console.log(data)
+    } else {
+      this.isUpdatedPage = false;
+      console.log(data)
     }
+
   }
   ngOnit() {
     console.log(this.data);
