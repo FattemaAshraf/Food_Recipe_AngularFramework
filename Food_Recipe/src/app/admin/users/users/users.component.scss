@@ -13,6 +13,7 @@ grid-template-columns: repeat(auto-fill, minmax(450px , 1fr));
       padding: 0;
       .description{
         margin-left: 10px;
+        cursor: pointer;
       }
       .header-profile {
         background-image: url(../../../../assets/headerhome.svg);

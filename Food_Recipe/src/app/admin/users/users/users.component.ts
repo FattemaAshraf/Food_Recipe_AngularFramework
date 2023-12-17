@@ -50,7 +50,7 @@ export class UsersComponent {
         console.log(res);
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
-        let users = this.tableData?.length;
+        let users = this.tableResponse?.totalNumberOfRecords;
         if (users !== undefined) {
           localStorage.setItem('users', users.toLocaleString());
         } else {

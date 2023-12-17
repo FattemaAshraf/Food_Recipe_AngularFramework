@@ -146,7 +146,7 @@
     <section id="cards-profile" class="my-4" *ngIf="!isCards">
         <div class="card-profile">
           <ng-container *ngIf="tableData.length > 0">
-            <div class="item" *ngFor="let item of tableData" [routerLink]="['/dashboard/admin/users/view/', item.id]">
+            <div class="item" *ngFor="let item of tableData">
               <div class="card-prof">
                 <div class="header-profile">
                   <a (click)="openDeleteDialog(item)"
@@ -167,7 +167,7 @@
                     />
                   </div>
                 </div>
-                <div class="description">
+                <div class="description"  [routerLink]="['/dashboard/admin/users/view/', item.id]">
                   <h4 class="mb-0 mt-1">{{ item.userName }}</h4>
                   <p>{{ item.email | trimDescription:10}}</p>
                 </div>
