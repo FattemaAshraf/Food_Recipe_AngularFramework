@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { ChangePasswordComponent } from 'src/app/shared/sidebar/change-password/change-password.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { DashboardComponent } from 'src/app/dashboard/dashboard/dashboard.component';
+import { FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 interface IMenu {
   title: string;
@@ -24,6 +26,7 @@ export class SidebarComponent {
     private _authService: AuthService,
     private _router: Router,
     public dialog: MatDialog
+    ,private _AuthService:AuthService, private toastr:ToastrService
   ) {}
 
   isAdmin(): boolean {
@@ -80,6 +83,21 @@ export class SidebarComponent {
       width: '40%'
     });
   }
+
+  // onChangePass(data:FormGroup){
+  //   return this._AuthService.onChangePassword(data.value).subscribe({
+  //     next:(res)=>{
+  //       console.log(res);
+  //     },
+  //     error:(err:any)=>{
+  //       console.log(err.error.message);
+  //       this.toastr.error(err.error.message , 'error!');
+  //     },
+  //     complete:()=> {
+  //       this.toastr.success('Password has been updated successfully', 'Done');
+  //     },
+  //   })
+  // }
   openDialogLogOut(): void {
     const dialogRef = this.dialog.open(LogOutComponent, {
       data: {},

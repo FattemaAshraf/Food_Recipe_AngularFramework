@@ -27,10 +27,11 @@ constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>,private _Aut
     return this._AuthService.onChangePassword(data.value).subscribe({
       next:(res)=>{
         console.log(res);
+        res=this.changePasswordForm;
       },
       error:(err:any)=>{
-        this.toastr.error('Invalid password' , 'error!');
-        console.log(err.message);
+        console.log(err.error.message);
+        this.toastr.error(err.error.message , 'error!');
       },
       complete:()=> {
         this.dialogRef.close();

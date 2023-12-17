@@ -66,7 +66,7 @@ export class UserRecipesComponent {
         this.tableResponse = res;
         this.tableData = this.tableResponse?.data;
         console.log(this.tableData?.length);
-        let userRecipes = this.tableData?.length;
+        let userRecipes =  this.tableResponse?.totalNumberOfRecords;
         if (userRecipes !== undefined) {
           localStorage.setItem('userRecipes', userRecipes.toLocaleString());
         } else {
