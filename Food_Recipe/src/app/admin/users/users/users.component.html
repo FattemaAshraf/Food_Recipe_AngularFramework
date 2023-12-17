@@ -144,37 +144,37 @@
       </tbody>
     </table>
     <section id="cards-profile" class="my-4" *ngIf="!isCards">
-      <div class="row">
-        <ng-container *ngIf="tableData.length > 0">
-          <div class="col-md-2" *ngFor="let item of tableData" [routerLink]="['/dashboard/admin/users/view/', item.id]">
-            <div class="card-prof">
-              <div class="header-profile">
-                <a (click)="openDeleteDialog(item)"
-                  ><i class="fa-solid fa-trash-can fa-1x"></i
-                ></a>
-                <div *ngIf="item.imagePath">
-                  <img
-                    [src]="pathHttps + item.imagePath"
-                    alt=""
-                    class="img-fluid"
-                  />
+        <div class="card-profile">
+          <ng-container *ngIf="tableData.length > 0">
+            <div class="item" *ngFor="let item of tableData" [routerLink]="['/dashboard/admin/users/view/', item.id]">
+              <div class="card-prof">
+                <div class="header-profile">
+                  <a (click)="openDeleteDialog(item)"
+                    ><i class="fa-solid fa-trash-can fa-1x"></i
+                  ></a>
+                  <div *ngIf="item.imagePath">
+                    <img
+                      [src]="pathHttps + item.imagePath"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  <div *ngIf="!item.imagePath" class="no-img">
+                    <img
+                      src="../../../assets/avatar.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
                 </div>
-                <div *ngIf="!item.imagePath" class="no-img">
-                  <img
-                    src="../../../assets/avatar.png"
-                    alt=""
-                    class="img-fluid"
-                  />
+                <div class="description">
+                  <h4 class="mb-0 mt-1">{{ item.userName }}</h4>
+                  <p>{{ item.email | trimDescription:10}}</p>
                 </div>
-              </div>
-              <div class="description">
-                <h4 class="mb-0 mt-1">{{ item.userName }}</h4>
-                <p>{{ item.email }}</p>
               </div>
             </div>
-          </div>
-        </ng-container>
-      </div>
+          </ng-container>
+        </div>
     </section>
     <div class="row" *ngIf="tableData.length == 0">
       <div class="col-md-6 mx-auto">
