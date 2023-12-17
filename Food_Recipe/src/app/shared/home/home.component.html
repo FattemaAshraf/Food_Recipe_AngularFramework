@@ -2,8 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 d-flex align-items-center">
-        <div class="px-5" >
-          <h2>Welcome <span>{{userName}} !</span> </h2>
+        <div class="px-5">
+          <h2>
+            Welcome <span>{{ userName }} !</span>
+          </h2>
           <p>
             This is a welcoming screen for the entry of the application , you
             can now see the options
@@ -12,32 +14,49 @@
       </div>
       <div class="col-md-4">
         <div>
-          <img src="../../../assets/homeAvatr.svg" class="w-100 mb-0" alt="">
+          <img src="../../../assets/homeAvatr.svg" class="w-100 mb-0" alt="" />
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<section id="items-home"  class="my-3">
-  <div class="container-fluid">
-    <div class="row ">
-        <ng-container *ngFor="let item of menu">
-          <div class="col-md-6 my-3" *ngIf="item.isActive" [routerLink]="item.link" >
-            <div class="card-home">
-              <h3>
-                <i [class]="'fa-solid text-main fa-3x' +' '+item.icon"></i>
-              </h3>
-              <div class="d-flex flex-column justify-content-between align-items-center">
-                <h1>{{item.length}}</h1>
-                <p>{{item.title}}</p>
-              </div>
-
+<section id="items-home" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="header-dashboard d-flex justify-content-between">
+        <div>
+          <h4 class="text-main">Your Dashboard</h4>
+          <p class="text-darkgrey">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="social-icons d-flex  flex-column gap-1">
+              <a href="https://github.com/FattemaAshraf"
+                ><i class="fa-brands fa-github"></i> Git Hub</a
+              >
+              <a href="https://www.linkedin.com/in/fatma-ashraf-b57279103"
+                ><i class="fa-brands fa-linkedin"></i> LinkedIn</a
+              >
+        </div>
+      </div>
+      <ng-container *ngFor="let item of menu">
+        <div
+          class="col-md-6 my-3"
+          *ngIf="item.isActive"
+          [routerLink]="item.link"
+        >
+          <div class="card-home">
+            <h3>
+              <i [class]="'fa-solid text-main fa-3x' + ' ' + item.icon"></i>
+            </h3>
+            <div
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <h1>{{ item.length }}</h1>
+              <p>{{ item.title }}</p>
             </div>
           </div>
-        </ng-container>
-
-      </div>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </section>
