@@ -15,6 +15,7 @@ import { NoDataComponent } from './no-data/no-data.component';
 import { TrimDescriptionPipe } from './pipes/trim-description.pipe';
 import { LogOutComponent } from './sidebar/log-out/log-out.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NoDataComponent,
     TrimDescriptionPipe,
     LogOutComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
