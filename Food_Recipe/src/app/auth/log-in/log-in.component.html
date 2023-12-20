@@ -36,7 +36,7 @@
                 ><i class="fa-solid fa-lock"></i></span>
               <input
               formControlName="password"
-              type="text"
+              type="password"
               [type]="hide ? 'password' : 'text'"
               class="form-control py-2"
               placeholder="Password"
@@ -45,11 +45,25 @@
               />
               <span class="eye-icon" (click)="hide = !hide"><i class="fa-solid" [class]="hide ?'fa-eye-slash':'fa-eye'"></i></span>
             </div>
-            <span class="text-danger mb-3" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-              <span *ngIf="loginForm.get('password')?.hasError('required')">Password is required</span>
-              <span *ngIf="loginForm.get('password')?.hasError('minLength')">Password must be at least 6 characters long</span>
-              <!-- <span *ngIf="loginForm.get('password')?.hasError('pattern')">Password must have capital and small characters and numbers</span> -->
+            <span *ngIf="loginForm.get('password')?.errors &&
+            loginForm.get('password')?.touched " class="text-danger mb-3"  >
+            <span *ngIf="loginForm.get('password')?.errors?.['required']">
+              password is required
             </span>
+            <div class="text-red-400 text-sm" *ngIf="passwordFormField">
+
+              <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('^(?=.*[A-Z])')}">At least uppercase letter.</span> <br/>
+
+              <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(?=.*[a-z])')}">At least one lowercase letter.</span> <br/>
+
+              <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(.*[0-9].*)')}">At least one digit.</span> <br/>
+
+              <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(?=.*[!@#$%^&*])')}">At least one special character.</span> <br/>
+
+              <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('.{8,}')}">At least 8 characters long.</span> <br/>
+
+           </div>
+          </span>
 
             <div class="d-flex justify-content-between">
               <a class="text-decoration-none text-secondry" routerLink="/auth/register"

@@ -9,6 +9,10 @@ import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 
+export const StrongPasswordRegx: RegExp =
+  /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,16}$/;
+
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -28,13 +32,10 @@ export class ResetPasswordComponent {
       ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(6),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$'),
+      Validators.pattern(StrongPasswordRegx)
       ]),
       confirmPassword: new FormControl(null, [
         Validators.required,
-        Validators.minLength(6),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$'),
       ]),
       seed: new FormControl(null, [
         Validators.required,
@@ -62,6 +63,11 @@ export class ResetPasswordComponent {
         ?.setErrors({ invalid: 'password and confirm password not match' });
       return { invalid: 'password and confirm password not match' };
     }
+  }
+
+  get passwordFormField() {
+    return this.resetForm.get('password')?.errors?.['pattern'];
+
   }
 
   onSubmit(data: FormGroup) {

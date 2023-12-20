@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VerifyComponent } from '../verify/verify.component';
 
+export const StrongPasswordRegx: RegExp =
+  /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,16}$/;
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,34 +20,29 @@ export class RegisterComponent {
   registerForm = new FormGroup({
     userName: new FormControl(null, [
       Validators.required,
-      Validators.minLength(6),
-      Validators.pattern(''),
+      Validators.pattern('([a-zA-Z]){3,12}([0-9]{1,3})')
     ]),
     email: new FormControl(null, [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
+      Validators.email,
     ]),
     country: new FormControl(null, [
       Validators.required
     ]),
     phoneNumber: new FormControl(null, [
       Validators.required,
-      Validators.minLength(11),
-      Validators.pattern('^01[0-2]d{1,8}$'),
+      Validators.pattern('^(01|01|00201)[0-2,5]{1}[0-9]{8}')
     ]),
-    profileImage: new FormControl(null),
     password: new FormControl(null, [
       Validators.required,
-      Validators.minLength(6),
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$'),
+      Validators.pattern(StrongPasswordRegx)
     ]),
     confirmPassword: new FormControl(null, [
       Validators.required,
-      Validators.minLength(6),
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$'),
     ]),
-  });
-  message: string = '"Welcome Back"';
+  },{validators: this.passwordMatchValidator,}
+  );
+  message: string = '"Welcome in Food Recipe"';
   hide = true;
   imgSrc: any;
   pathHttps: string = 'https://upskilling-egypt.com:443/';
@@ -53,6 +52,23 @@ export class RegisterComponent {
     private toastr: ToastrService,
     private _router: Router
   ) {}
+  passwordMatchValidator(control: any) {
+    let password =control.get('password');
+    let confirmPassword=control.get('confirmPassword')
+    if (password.value == confirmPassword.value) {
+      return null;
+    } else {
+      control
+        .get('confirmPassword')
+        ?.setErrors({ invalid: 'password and confirm password not match' });
+      return { invalid: 'password and confirm password not match' };
+    }
+  }
+
+  get passwordFormField() {
+    return this.registerForm.get('password')?.errors?.['pattern'];
+
+  }
 
   onSubmit(data: FormGroup) {
     console.log(data.value);

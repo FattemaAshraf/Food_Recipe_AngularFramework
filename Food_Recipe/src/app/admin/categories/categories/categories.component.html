@@ -30,7 +30,7 @@
       <div class="flex-grow-1">
         <input
           [(ngModel)]="searchValue"
-          (keyup)="getTableData()"
+          (keyup.enter)="getTableData()"
           type="text"
           class="form-control rounded "
           placeholder="search by name "

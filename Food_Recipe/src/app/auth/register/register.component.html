@@ -28,21 +28,13 @@
                     aria-describedby="addon-wrapping"
                   />
                 </div>
-                <span
-                  class="text-danger mb-3"
-                  *ngIf="
-                    registerForm.get('userName')?.invalid &&
-                    (registerForm.get('userName')?.dirty ||
-                      registerForm.get('userName')?.touched)
-                  "
-                >
-                  <span *ngIf="registerForm.get('userName')?.hasError('required')"
-                    >userName is required</span
-                  >
-                  <span *ngIf="registerForm.get('userName')?.hasError('pattern')"
-                    >Invalid userName format must contains numbers and characters</span
-                  >
-                </span>
+                <span class="text-danger  mb-3"
+                *ngIf="registerForm.get('userName')?.invalid &&
+                  (registerForm.get('userName')?.dirty ||
+                    registerForm.get('userName')?.touched)">
+                <span *ngIf="registerForm.get('userName')?.hasError('required')">userName is required</span>
+                <span *ngIf="registerForm.get('userName')?.hasError('pattern')">Invalid userName format must contains numbers andcharacters</span>
+              </span>
               </div>
               <div class="col-md-6">
                 <div class="input-group flex-nowrap mb-3">
@@ -115,22 +107,12 @@
                     aria-describedby="basic-addon1"
                   />
                 </div>
-                <span
-                  class="text-danger mb-3"
-                  *ngIf="
-                    registerForm.get('phoneNumber')?.invalid &&
-                    (registerForm.get('phoneNumber')?.dirty ||
-                      registerForm.get('phoneNumber')?.touched)
-                  "
-                >
-                  <span
-                    *ngIf="registerForm.get('phoneNumber')?.hasError('required')"
-                    >phoneNumber is required
-                  </span>
-                  <!-- <span *ngIf="registerForm.get('phoneNumber')?.getError?.length"
-                    >Invalid phoneNumber format</span
-                  > -->
-                  <!-- <span *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">Invalid Phone number format</span> -->
+                <span *ngIf="registerForm.get('phoneNumber')?.errors && registerForm.get('phoneNumber')?.touched "
+                class="text-danger  mb-3" >
+                <span *ngIf="registerForm.get('phoneNumber')?.errors?.['required']"
+                    class="mb-0">phoneNumber is required</span>
+                <span *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']"
+                    class="mb-0">phoneNumber starts with 011/012/015/010 and length 11 number </span>
                 </span>
               </div>
             </div>
@@ -156,23 +138,25 @@
                     ></i
                   ></span>
                 </div>
-                <span
-                  class="text-danger mb-3"
-                  *ngIf="
-                    registerForm.get('password')?.invalid &&
-                    (registerForm.get('password')?.dirty ||
-                      registerForm.get('password')?.touched)
-                  "
-                >
-                  <span
-                    *ngIf="registerForm.get('password')?.hasError('required')"
-                    >password is required
-                  </span>
-                  <!-- <span *ngIf="registerForm.get('password')?.getError?.length"
-                    >Password must be at least 6 characters long</span
-                  > -->
-                  <!-- <span *ngIf="registerForm.get('password')?.hasError('pattern')">password must have capital and small charachters and numbers</span> -->
+                <span *ngIf="registerForm.get('password')?.errors &&
+                registerForm.get('password')?.touched " class="text-danger mb-3"  >
+                <span *ngIf="registerForm.get('password')?.errors?.['required']">
+                  password is required
                 </span>
+                <div class="text-red-400 text-sm" *ngIf="passwordFormField">
+
+                  <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('^(?=.*[A-Z])')}">At least uppercase letter.</span> <br/>
+
+                  <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(?=.*[a-z])')}">At least one lowercase letter.</span> <br/>
+
+                  <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(.*[0-9].*)')}">At least one digit.</span> <br/>
+
+                  <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(?=.*[!@#$%^&*])')}">At least one special character.</span> <br/>
+
+                  <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('.{8,}')}">At least 8 characters long.</span> <br/>
+
+               </div>
+              </span>
               </div>
               <div class="col-md-6">
                 <div class="input-group flex-nowrap mb-3">
@@ -195,24 +179,15 @@
                     ></i
                   ></span>
                 </div>
-                <span
-                  class="text-danger mb-3"
-                  *ngIf="
-                    registerForm.get('confirmPassword')?.invalid &&
-                    (registerForm.get('confirmPassword')?.dirty ||
-                      registerForm.get('confirmPassword')?.touched)
-                  "
-                >
-                  <span
-                    *ngIf="registerForm.get('confirmPassword')?.hasError('confirmPassword')"
-                    >confirmPassword is required
-                  </span>
-                  <!-- <span *ngIf="registerForm.get('confirmPassword')?.getError?.length"
-                    >Password must be at least 6 characters long</span
-                  > -->
-                  <span *ngIf="registerForm.get('confirmPassword')?.errors?.['invalid']">password and confirm password not match</span>
-                  <!-- <span *ngIf="registerForm.get('confirmPassword')?.hasError('confirmPassword')">password must have capital and small charachters and numbers</span> -->
+                <span class="text-danger mb-3" *ngIf="registerForm.get('confirmPassword')?.errors &&
+                registerForm.get('confirmPassword')?.touched ">
+                <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+                  confirmPassword is required
                 </span>
+              <span *ngIf="registerForm.get('confirmPassword')?.errors?.['invalid']">
+                password and confirm password not match
+              </span>
+            </span>
               </div>
             </div>
             <div>

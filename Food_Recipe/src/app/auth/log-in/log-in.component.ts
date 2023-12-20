@@ -6,12 +6,17 @@ import { Router } from '@angular/router';
 import { RequestResetPasswordComponent } from '../request-reset-password/request-reset-password.component';
 import { MatDialog } from '@angular/material/dialog';
 
+export const StrongPasswordRegx: RegExp =
+  /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,16}$/;
+
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent {
+
   loginForm = new FormGroup({
     email: new FormControl(null, [
       Validators.required,
@@ -19,11 +24,11 @@ export class LogInComponent {
     ]),
     password: new FormControl(null, [
       Validators.required,
-      Validators.minLength(6),
-      // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)(?!.* ).{8,16}$'),
+      Validators.pattern(StrongPasswordRegx)
     ]),
   });
   message: string = '"Welcome Back"';
+
   hide = true;
   constructor(
     private _authService: AuthService,
@@ -85,5 +90,9 @@ export class LogInComponent {
         localStorage.setItem('email',data);
       },
     });
+  }
+  get passwordFormField() {
+    return this.loginForm.get('password')?.errors?.['pattern'];
+
   }
 }
